@@ -26,8 +26,10 @@ namespace Datos
             enlace.PrimerApellido = aux[3];
             enlace.SegundoApellido = aux[4];
             enlace.Edad = int.Parse(aux[5]);
-            enlace.AniosExperiencia= int.Parse(aux[6]);
-            enlace.Especialidad= aux[7];
+            enlace.Telefono = aux[6];
+            enlace.Correo = aux[7];
+            enlace.AniosExperiencia= int.Parse(aux[8]);
+            enlace.Especialidad= aux[9];
           
             return enlace;
         }
@@ -50,7 +52,6 @@ namespace Datos
             catch (Exception) { return null; }
 
         }
-
 
         public bool Eliminar(List<Medico> lista)
         {

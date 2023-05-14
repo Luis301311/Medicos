@@ -10,7 +10,7 @@ namespace Datos
 {
     public class Archivo
     {
-        protected string ruta = "personas.txt";
+        protected string ruta = "Personas.txt";
 
         public Archivo() { }
 
@@ -19,7 +19,7 @@ namespace Datos
             this.ruta = ruta;
         }
 
-        public string GuardarPersona(Persona enlace)
+        public string Guardar(Persona enlace)
         {
             try
             {

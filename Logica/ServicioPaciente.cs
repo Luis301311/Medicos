@@ -35,7 +35,7 @@ namespace Logica
                 }
                 else if (Exist(enlace.Id) == false)
                 {
-                    archivo.GuardarPersona(enlace);
+                    archivo.Guardar(enlace);
                     return true;
                 }
                 return false;
@@ -99,7 +99,6 @@ namespace Logica
 
             if (lista.Count == 0) return null;
             return lista;
-
         }
 
         public bool Update(Paciente paciente)

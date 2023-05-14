@@ -28,7 +28,7 @@ namespace Logica
                 }
                 else if (Exist(enlace.Id) == false)
                 {
-                    archivo.GuardarPersona(enlace);
+                    archivo.Guardar(enlace);
                     return true;
                 }
                 return false;

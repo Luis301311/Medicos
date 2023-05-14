@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.labelNotificacion = new System.Windows.Forms.Label();
             this.buttonActualizar = new System.Windows.Forms.Button();
             this.buttonNuevo = new System.Windows.Forms.Button();
             this.buttonAgregar = new System.Windows.Forms.Button();
@@ -58,14 +59,25 @@
             this.textBoxId = new System.Windows.Forms.TextBox();
             this.textBoxPrimerNombre = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.GrillaMed = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PNomber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PApellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SApellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Edad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Corr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Especialidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Años = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
             this.buttonSalir = new System.Windows.Forms.Button();
-            this.labelNotificacion = new System.Windows.Forms.Label();
+            this.buttonFiltar = new System.Windows.Forms.Button();
+            this.TxtFiltrar = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GrillaMed)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -116,6 +128,14 @@
             this.tabPage1.Text = "Gestion";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // labelNotificacion
+            // 
+            this.labelNotificacion.AutoSize = true;
+            this.labelNotificacion.Location = new System.Drawing.Point(517, 274);
+            this.labelNotificacion.Name = "labelNotificacion";
+            this.labelNotificacion.Size = new System.Drawing.Size(0, 13);
+            this.labelNotificacion.TabIndex = 110;
+            // 
             // buttonActualizar
             // 
             this.buttonActualizar.Font = new System.Drawing.Font("Segoe UI Symbol", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -125,6 +145,7 @@
             this.buttonActualizar.TabIndex = 109;
             this.buttonActualizar.Text = "Actualizar";
             this.buttonActualizar.UseVisualStyleBackColor = true;
+            this.buttonActualizar.Click += new System.EventHandler(this.buttonActualizar_Click);
             // 
             // buttonNuevo
             // 
@@ -157,6 +178,7 @@
             this.buttonEliminar.TabIndex = 106;
             this.buttonEliminar.Text = "Eliminar";
             this.buttonEliminar.UseVisualStyleBackColor = true;
+            this.buttonEliminar.Click += new System.EventHandler(this.buttonEliminar_Click);
             // 
             // label11
             // 
@@ -176,6 +198,7 @@
             this.lstMedicos.Name = "lstMedicos";
             this.lstMedicos.Size = new System.Drawing.Size(137, 225);
             this.lstMedicos.TabIndex = 104;
+            this.lstMedicos.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstMedicos_MouseDoubleClick);
             // 
             // textBoxTelefono
             // 
@@ -370,7 +393,9 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.dataGridView1);
+            this.tabPage2.Controls.Add(this.TxtFiltrar);
+            this.tabPage2.Controls.Add(this.buttonFiltar);
+            this.tabPage2.Controls.Add(this.GrillaMed);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -379,13 +404,75 @@
             this.tabPage2.Text = "Listado De Medicos";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // GrillaMed
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(22, 35);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(785, 255);
-            this.dataGridView1.TabIndex = 0;
+            this.GrillaMed.AllowUserToOrderColumns = true;
+            this.GrillaMed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GrillaMed.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.PNomber,
+            this.SNombre,
+            this.PApellido,
+            this.SApellido,
+            this.Edad,
+            this.Tel,
+            this.Corr,
+            this.Especialidad,
+            this.Años});
+            this.GrillaMed.Location = new System.Drawing.Point(19, 56);
+            this.GrillaMed.Name = "GrillaMed";
+            this.GrillaMed.Size = new System.Drawing.Size(785, 255);
+            this.GrillaMed.TabIndex = 0;
+            // 
+            // Id
+            // 
+            this.Id.HeaderText = "Identificación";
+            this.Id.Name = "Id";
+            // 
+            // PNomber
+            // 
+            this.PNomber.HeaderText = "Primer Nombre";
+            this.PNomber.Name = "PNomber";
+            // 
+            // SNombre
+            // 
+            this.SNombre.HeaderText = "Segundo Nombre";
+            this.SNombre.Name = "SNombre";
+            // 
+            // PApellido
+            // 
+            this.PApellido.HeaderText = "Primer Apellido";
+            this.PApellido.Name = "PApellido";
+            // 
+            // SApellido
+            // 
+            this.SApellido.HeaderText = "Segundo Apellido";
+            this.SApellido.Name = "SApellido";
+            // 
+            // Edad
+            // 
+            this.Edad.HeaderText = "Edad";
+            this.Edad.Name = "Edad";
+            // 
+            // Tel
+            // 
+            this.Tel.HeaderText = "Telefono";
+            this.Tel.Name = "Tel";
+            // 
+            // Corr
+            // 
+            this.Corr.HeaderText = "Correo";
+            this.Corr.Name = "Corr";
+            // 
+            // Especialidad
+            // 
+            this.Especialidad.HeaderText = "Especialidad";
+            this.Especialidad.Name = "Especialidad";
+            // 
+            // Años
+            // 
+            this.Años.HeaderText = "Años De Experiencia";
+            this.Años.Name = "Años";
             // 
             // label4
             // 
@@ -413,13 +500,22 @@
             this.buttonSalir.UseVisualStyleBackColor = true;
             this.buttonSalir.Click += new System.EventHandler(this.buttonSalir_Click);
             // 
-            // labelNotificacion
+            // buttonFiltar
             // 
-            this.labelNotificacion.AutoSize = true;
-            this.labelNotificacion.Location = new System.Drawing.Point(517, 274);
-            this.labelNotificacion.Name = "labelNotificacion";
-            this.labelNotificacion.Size = new System.Drawing.Size(0, 13);
-            this.labelNotificacion.TabIndex = 110;
+            this.buttonFiltar.Location = new System.Drawing.Point(729, 15);
+            this.buttonFiltar.Name = "buttonFiltar";
+            this.buttonFiltar.Size = new System.Drawing.Size(75, 23);
+            this.buttonFiltar.TabIndex = 27;
+            this.buttonFiltar.Text = "Filtrar";
+            this.buttonFiltar.UseVisualStyleBackColor = true;
+            this.buttonFiltar.Click += new System.EventHandler(this.buttonFiltar_Click);
+            // 
+            // TxtFiltrar
+            // 
+            this.TxtFiltrar.Location = new System.Drawing.Point(574, 17);
+            this.TxtFiltrar.Name = "TxtFiltrar";
+            this.TxtFiltrar.Size = new System.Drawing.Size(131, 20);
+            this.TxtFiltrar.TabIndex = 28;
             // 
             // FrmMedico
             // 
@@ -436,7 +532,8 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GrillaMed)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -475,8 +572,20 @@
         private System.Windows.Forms.Button buttonNuevo;
         private System.Windows.Forms.Button buttonAgregar;
         private System.Windows.Forms.Button buttonEliminar;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView GrillaMed;
         private System.Windows.Forms.Button buttonSalir;
         private System.Windows.Forms.Label labelNotificacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PNomber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SNombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PApellido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SApellido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Edad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Corr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Especialidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Años;
+        private System.Windows.Forms.TextBox TxtFiltrar;
+        private System.Windows.Forms.Button buttonFiltar;
     }
 }
