@@ -526,7 +526,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tabControl1);
             this.Name = "FrmMedico";
-            this.Text = "FrmMedico";
+            this.Text = "Gestión Medicos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMedico_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
