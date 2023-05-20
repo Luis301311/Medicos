@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
 using Logica;
+using System.Data;
+using System.Linq;
 
 namespace Presentacion_GUI
 {
@@ -11,13 +13,12 @@ namespace Presentacion_GUI
     {
         Paciente enlacePaciente = new Paciente();
         ServicioPaciente servicio = new ServicioPaciente();
+        DataTable tabla = new DataTable();
 
 
         public FormListadoGeneralcs()
         {
             InitializeComponent();
-            CargarDatos();
-            CargarLista();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -58,16 +59,8 @@ namespace Presentacion_GUI
 
         void CargarLista()
         {
-            var lista = servicio.GetByAll();
-            lstPacientes.Items.Clear();
-
-            if(lista!=null)
-            {
-                foreach(var item in lista)
-                {
-                    lstPacientes.Items.Add(item.PrimerNombre+" "+item.PrimerApellido);
-                }
-            }
+            //tabla = servicio.MostrarPacientes();
+            //tabla.Rows.Count();
         }
 
         private void Limpiar()
@@ -151,18 +144,10 @@ namespace Presentacion_GUI
 
         public void CargarDatos()
         {
-            var lista = servicio.GetByAll();
-            if (lista != null)
-            {
-                dataGridView1.Rows.Clear();
-                foreach (var item in lista)
-                {
-                    dataGridView1.Rows.Add(item.Id, item.PrimerNombre, item.SegundoNombre, item.PrimerApellido,
-                                           item.SegundoApellido, item.Telefono, item.Direccion, item.Ocupacion,
-                                           item.EstadoCivil, item.Correo, item.FechaNacimiento, item.Edad, item.Regimen,
-                                           item.Nacionalidad, item.EstadoCivil, item.NivelEducativo);
-                }
-            }
+            DataTable dt = new DataTable();
+            dt.Rows.Add(dt.NewRow());
+            dataGridView1.DataSource = dt;
+            dataGridView1.DataSource = servicio.MostrarPacientes();
         }
 
         void Actualizar()
@@ -213,71 +198,10 @@ namespace Presentacion_GUI
         }
 
 
-        private void textBoxBusqueda_TextChanged(object sender, EventArgs e)
-        {
-            //Busqueda();
-        }
-        /*private void Busqueda()
-        {
-            //if (textBoxBusqueda.Text != "")
-            //{
-            //    dataGridView1.CurrentCell = null;
-            //    foreach (DataGridViewRow r in dataGridView1.Rows)
-            //    {
-            //        r.Visible = true;
-            //    }
-
-            //    foreach (DataGridViewRow r in dataGridView1.Rows)
-            //    {
-            //        foreach (DataGridViewCell c in dataGridView1.Rows)
-            //        {
-            //            if ((Convert.ToString(c.Value).ToUpper()).IndexOf(textBoxBusqueda.Text.ToUpper()) == 0)
-            //            {
-            //                r.Visible = true;
-            //                break;
-            //            }
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    //CaragarDatos
-            //}
-            string textoBusqueda = textBoxBusqueda.Text.ToUpper();
-
-            if (string.IsNullOrWhiteSpace(textoBusqueda))
-            {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    row.Visible = true;
-                }
-
-                // CargarDatos();
-            }
-            else
-            {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    bool encontrado = false;
-
-                    foreach (DataGridViewCell cell in row.Cells)
-                    {
-                        if (Convert.ToString(cell.Value).ToUpper().Contains(textoBusqueda))
-                        {
-                            encontrado = true;
-                            break;
-
-                        }
-                    }
-
-                    row.Visible = encontrado;
-                }
-            }
-        }*/
-
         private void FormListadoGeneralcs_Load(object sender, EventArgs e)
         {
             CargarDatos();
+            CargarLista();
         }
 
         private void buttonEliminar_Click(object sender, EventArgs e)
@@ -325,7 +249,7 @@ namespace Presentacion_GUI
 
         private void buttonfiltar_Click(object sender, EventArgs e)
         {
-            var busqueda = textBoxBusqueda.Text;
+            /*var busqueda = textBoxBusqueda.Text;
 
             var lista = servicio.GetByName(busqueda);
 
@@ -339,9 +263,10 @@ namespace Presentacion_GUI
                                            item.EstadoCivil, item.Correo, item.FechaNacimiento, item.Edad, item.Regimen,
                                            item.Nacionalidad, item.EstadoCivil, item.NivelEducativo);
                 }
-            }
+            }*/
         }
+
+
     }
-    //===============================================================================
 }
 

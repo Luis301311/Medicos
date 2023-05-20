@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Datos;
 using Entidades;
+using BaseDeDatos;
+using System.Data;
 
 namespace Logica
 {
@@ -13,7 +15,14 @@ namespace Logica
     {
         List<Paciente> pacientes = null;
         ArchivoPaciente archivo = new ArchivoPaciente("Paciente.txt");
+        DatosPacientes enlacePaciente = new DatosPacientes();
+        DataTable tabla = new DataTable();
 
+        public DataTable MostrarPacientes()
+        {     
+            tabla = enlacePaciente.Mostrar();
+            return tabla;
+        }
 
         public ServicioPaciente()
         {
@@ -27,7 +36,7 @@ namespace Logica
 
         public bool Add(Paciente enlace)
         {
-            try
+            /*try
             {
                 if (enlace == null)
                 {
@@ -43,7 +52,9 @@ namespace Logica
             catch (Exception)
             {
                 return false;
-            }
+            }*/
+            enlacePaciente.Insertar(enlace);
+            return true;
         }
 
         public bool Delete(int id)

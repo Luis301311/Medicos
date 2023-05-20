@@ -48,6 +48,10 @@
     <Compile Include="ServicioPaciente.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BaseDeDatos\BaseDeDatos.csproj">
+      <Project>{196d26c8-2a32-4ca2-a12e-69fb90a56afa}</Project>
+      <Name>BaseDeDatos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Datos\Datos.csproj">
       <Project>{e3d92af8-e50f-4be7-a56e-7be5f8bf1510}</Project>
       <Name>Datos</Name>

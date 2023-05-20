@@ -51,22 +51,6 @@
             this.textBoxTelefono = new System.Windows.Forms.TextBox();
             this.textBoxPrimerNombre = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Primer_Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Segundo_Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Primer_Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Segundo_Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ocupación = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EstadoCivil = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Correo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Edad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Regimen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nacionalidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado_Civil = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nivel_Educativo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha_Nacimiento = new System.Windows.Forms.DateTimePicker();
             this.buttonfiltar = new System.Windows.Forms.Button();
             this.buttonEliminar = new System.Windows.Forms.Button();
@@ -87,20 +71,20 @@
             this.buttonActualizar = new System.Windows.Forms.Button();
             this.lstPacientes = new System.Windows.Forms.ListBox();
             this.labelNotificacion = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelid
@@ -310,109 +294,11 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.Primer_Nombre,
-            this.Segundo_Nombre,
-            this.Primer_Apellido,
-            this.Segundo_Apellido,
-            this.Telefono,
-            this.Direccion,
-            this.Ocupación,
-            this.EstadoCivil,
-            this.Correo,
-            this.Fecha,
-            this.Edad,
-            this.Regimen,
-            this.Nacionalidad,
-            this.Estado_Civil,
-            this.Nivel_Educativo});
             this.dataGridView1.Location = new System.Drawing.Point(26, 35);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(886, 254);
             this.dataGridView1.TabIndex = 23;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "Identificacion";
-            this.ID.Name = "ID";
-            this.ID.ToolTipText = "System.Int32";
-            // 
-            // Primer_Nombre
-            // 
-            this.Primer_Nombre.HeaderText = "Primer Nombre";
-            this.Primer_Nombre.Name = "Primer_Nombre";
-            // 
-            // Segundo_Nombre
-            // 
-            this.Segundo_Nombre.HeaderText = "Segundo Nombre";
-            this.Segundo_Nombre.Name = "Segundo_Nombre";
-            // 
-            // Primer_Apellido
-            // 
-            this.Primer_Apellido.HeaderText = "Primer Apellido";
-            this.Primer_Apellido.Name = "Primer_Apellido";
-            // 
-            // Segundo_Apellido
-            // 
-            this.Segundo_Apellido.HeaderText = "Segundo Apellido";
-            this.Segundo_Apellido.Name = "Segundo_Apellido";
-            // 
-            // Telefono
-            // 
-            this.Telefono.HeaderText = "Telefono";
-            this.Telefono.Name = "Telefono";
-            // 
-            // Direccion
-            // 
-            this.Direccion.HeaderText = "Direccion";
-            this.Direccion.Name = "Direccion";
-            // 
-            // Ocupación
-            // 
-            this.Ocupación.HeaderText = "Ocupacion";
-            this.Ocupación.Name = "Ocupación";
-            // 
-            // EstadoCivil
-            // 
-            this.EstadoCivil.HeaderText = "Estado Civil";
-            this.EstadoCivil.Name = "EstadoCivil";
-            // 
-            // Correo
-            // 
-            this.Correo.HeaderText = "Correo";
-            this.Correo.Name = "Correo";
-            // 
-            // Fecha
-            // 
-            this.Fecha.HeaderText = "Fecha";
-            this.Fecha.Name = "Fecha";
-            // 
-            // Edad
-            // 
-            this.Edad.HeaderText = "Edad";
-            this.Edad.Name = "Edad";
-            // 
-            // Regimen
-            // 
-            this.Regimen.HeaderText = "Regimen";
-            this.Regimen.Name = "Regimen";
-            // 
-            // Nacionalidad
-            // 
-            this.Nacionalidad.HeaderText = "Nacionalidad";
-            this.Nacionalidad.Name = "Nacionalidad";
-            // 
-            // Estado_Civil
-            // 
-            this.Estado_Civil.HeaderText = "Estado_Civil";
-            this.Estado_Civil.Name = "Estado_Civil";
-            // 
-            // Nivel_Educativo
-            // 
-            this.Nivel_Educativo.HeaderText = "Nivel_Educativo";
-            this.Nivel_Educativo.Name = "Nivel_Educativo";
             // 
             // fecha_Nacimiento
             // 
@@ -482,7 +368,6 @@
             this.textBoxBusqueda.Name = "textBoxBusqueda";
             this.textBoxBusqueda.Size = new System.Drawing.Size(161, 20);
             this.textBoxBusqueda.TabIndex = 31;
-            this.textBoxBusqueda.TextChanged += new System.EventHandler(this.textBoxBusqueda_TextChanged);
             // 
             // label1
             // 
@@ -646,6 +531,16 @@
             this.labelNotificacion.Size = new System.Drawing.Size(0, 13);
             this.labelNotificacion.TabIndex = 43;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Presentacion_GUI.Properties.Resources.vector_JUL_2021_73;
+            this.pictureBox3.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(933, 307);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 47;
+            this.pictureBox3.TabStop = false;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dataGridView1);
@@ -659,6 +554,16 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Lista De Pacientes";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::Presentacion_GUI.Properties.Resources.vector_JUL_2021_73;
+            this.pictureBox4.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(933, 307);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 32;
+            this.pictureBox4.TabStop = false;
             // 
             // label4
             // 
@@ -686,16 +591,6 @@
             this.pictureBox2.TabIndex = 46;
             this.pictureBox2.TabStop = false;
             // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::Presentacion_GUI.Properties.Resources.vector_JUL_2021_73;
-            this.pictureBox4.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(933, 307);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 32;
-            this.pictureBox4.TabStop = false;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Presentacion_GUI.Properties.Resources.gabinete_hospital_ortodoncista_estomatologia_vacia_nadie;
@@ -705,16 +600,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 45;
             this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::Presentacion_GUI.Properties.Resources.vector_JUL_2021_73;
-            this.pictureBox3.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(933, 307);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 47;
-            this.pictureBox3.TabStop = false;
             // 
             // FormListadoGeneralcs
             // 
@@ -734,12 +619,12 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -787,22 +672,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Primer_Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Segundo_Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Primer_Apellido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Segundo_Apellido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Direccion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ocupación;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EstadoCivil;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Correo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Edad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Regimen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nacionalidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Estado_Civil;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nivel_Educativo;
         private System.Windows.Forms.Label labelNotificacion;
         private System.Windows.Forms.Button buttonActualizar;
         private System.Windows.Forms.ListBox lstPacientes;
