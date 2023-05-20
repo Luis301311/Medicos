@@ -144,9 +144,6 @@ namespace Presentacion_GUI
 
         public void CargarDatos()
         {
-            DataTable dt = new DataTable();
-            dt.Rows.Add(dt.NewRow());
-            dataGridView1.DataSource = dt;
             dataGridView1.DataSource = servicio.MostrarPacientes();
         }
 
