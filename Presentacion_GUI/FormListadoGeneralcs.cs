@@ -11,58 +11,65 @@ namespace Presentacion_GUI
 {
     public partial class FormListadoGeneralcs : Form
     {
+        //INSTANCIAS
         Paciente enlacePaciente = new Paciente();
         ServicioPaciente servicio = new ServicioPaciente();
         DataTable tabla = new DataTable();
-
 
         public FormListadoGeneralcs()
         {
             InitializeComponent();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //FUNCIONES
+        void closing(FormClosingEventArgs e)
         {
-        }
+            var respuesta = MessageBox.Show("¿Desea Salir?", "Agenda de contactos",
+                                             MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-        private void buttonNuevo_Click(object sender, EventArgs e)
-        {
-            Limpiar();
+            if (respuesta == DialogResult.Yes)
+            {
+                Owner.Show();
+                Dispose();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
-
         void dobleClick()
         {
             if (lstPacientes.SelectedIndex != -1)
             {
                 int num = lstPacientes.SelectedIndex;
-                var lst = servicio.GetByAll();
 
-                textBoxId.Text = lst[num].Id.ToString();
-                textBoxPrimerNombre.Text = lst[num].PrimerNombre;
-                textBoxSegundoNombre.Text = lst[num].SegundoNombre;
-                textBoxPrimerApellido.Text = lst[num].PrimerApellido;
-                textBoxSegundoApellido.Text = lst[num].SegundoApellido;
-                textBoxCorreo.Text = lst[num].Correo;
-                textBoxEstado_Civil.Text = lst[num].EstadoCivil;
-                textBoxDireccion.Text = lst[num].Direccion;
-                textBoxNacionalidad.Text = lst[num].Nacionalidad;
-                textBoxNivel_Educativo.Text = lst[num].NivelEducativo;
-                textBoxOcupacion.Text = lst[num].Ocupacion;
-                comboBox1.Text = lst[num].Regimen;
-                fecha_Nacimiento.Text = lst[num].FechaNacimiento.ToString();
-                textBoxEdad.Text = lst[num].Edad.ToString();
-                textBoxTelefono.Text = lst[num].Telefono;
+                textBoxId.Text = GrillaPacientes.Rows[num].Cells[0].Value.ToString();
+                textBoxPrimerNombre.Text = GrillaPacientes.Rows[num].Cells[1].Value.ToString();
+                textBoxSegundoNombre.Text = GrillaPacientes.Rows[num].Cells[2].Value.ToString();
+                textBoxPrimerApellido.Text = GrillaPacientes.Rows[num].Cells[3].Value.ToString();
+                textBoxSegundoApellido.Text = GrillaPacientes.Rows[num].Cells[4].Value.ToString();
+                textBoxCorreo.Text = GrillaPacientes.Rows[num].Cells[8].Value.ToString();
+                textBoxEstado_Civil.Text = GrillaPacientes.Rows[num].Cells[13].Value.ToString();
+                textBoxDireccion.Text = GrillaPacientes.Rows[num].Cells[10].Value.ToString();
+                textBoxNacionalidad.Text = GrillaPacientes.Rows[num].Cells[13].Value.ToString();
+                textBoxNivel_Educativo.Text = GrillaPacientes.Rows[num].Cells[12].Value.ToString();
+                textBoxOcupacion.Text = GrillaPacientes.Rows[num].Cells[11].Value.ToString();
+                comboBox1.Text = GrillaPacientes.Rows[num].Cells[9].Value.ToString();
+                //fecha_Nacimiento.Value = DateTime.Parse(GrillaPacientes.Rows[num].Cells[6].Value.ToString());
+                textBoxSangre.Text = GrillaPacientes.Rows[num].Cells[14].Value.ToString();
+                textBoxTelefono.Text = GrillaPacientes.Rows[num].Cells[7].Value.ToString();
 
                 textBoxId.Enabled = false;
             }
         }
-
         void CargarLista()
         {
-            //tabla = servicio.MostrarPacientes();
-            //tabla.Rows.Count();
+            lstPacientes.Items.Clear();
+            for (int fila = 0; fila < GrillaPacientes.Rows.Count - 1; fila++)
+            {
+                lstPacientes.Items.Add(GrillaPacientes.Rows[fila].Cells[1].Value.ToString()+" "+ GrillaPacientes.Rows[fila].Cells[3].Value.ToString());
+            }
         }
-
         private void Limpiar()
         {
             textBoxId.Enabled = true;
@@ -76,7 +83,7 @@ namespace Presentacion_GUI
             textBoxSegundoApellido.Clear();
             textBoxTelefono.Clear();
             textBoxCorreo.Clear();
-            textBoxEdad.Clear();
+            textBoxSangre.Clear();
             comboBox1.Text = string.Empty;
             textBoxNacionalidad.Clear();
             textBoxEstado_Civil.Clear();
@@ -85,7 +92,6 @@ namespace Presentacion_GUI
             textBoxOcupacion.Clear();
 
         }
-
         private void buttonagregar_Click(object sender, EventArgs e)
         {
             Guardar();
@@ -93,11 +99,10 @@ namespace Presentacion_GUI
             CargarLista();
             Limpiar();
         }
-
         private async void Guardar()
         {
 
-            if (CamposEstanCompletos(textBoxId, textBoxPrimerNombre, textBoxPrimerApellido, textBoxTelefono, textBoxCorreo, textBoxEdad,
+            if (CamposEstanCompletos(textBoxId, textBoxPrimerNombre, textBoxPrimerApellido, textBoxTelefono, textBoxCorreo, textBoxSangre,
                 textBoxNacionalidad, textBoxEstado_Civil, textBoxNivel_Educativo, textBoxDireccion, textBoxOcupacion) == false)
             {
                 enlacePaciente.Id = int.Parse(textBoxId.Text);
@@ -105,7 +110,7 @@ namespace Presentacion_GUI
                 enlacePaciente.SegundoNombre = textBoxSegundoNombre.Text;
                 enlacePaciente.PrimerApellido = textBoxPrimerApellido.Text;
                 enlacePaciente.SegundoApellido = textBoxSegundoApellido.Text;
-                enlacePaciente.Edad = int.Parse(textBoxEdad.Text);
+                enlacePaciente.Tipo_Sangre = textBoxSangre.Text;
                 enlacePaciente.FechaNacimiento = fecha_Nacimiento.Value;
                 enlacePaciente.Telefono = textBoxTelefono.Text;
                 enlacePaciente.Direccion = textBoxDireccion.Text;
@@ -144,9 +149,9 @@ namespace Presentacion_GUI
 
         public void CargarDatos()
         {
-            dataGridView1.DataSource = servicio.MostrarPacientes();
+            ServicioPaciente servicio = new ServicioPaciente();
+            GrillaPacientes.DataSource = servicio.MostrarPacientes();
         }
-
         void Actualizar()
         {
             if(textBoxId.Text!="")
@@ -156,7 +161,7 @@ namespace Presentacion_GUI
                 enlacePaciente.SegundoNombre = textBoxSegundoNombre.Text;
                 enlacePaciente.PrimerApellido = textBoxPrimerApellido.Text;
                 enlacePaciente.SegundoApellido = textBoxSegundoApellido.Text;
-                enlacePaciente.Edad = int.Parse(textBoxEdad.Text);
+                enlacePaciente.Tipo_Sangre = textBoxSangre.Text;
                 enlacePaciente.FechaNacimiento = fecha_Nacimiento.Value;
                 enlacePaciente.Telefono = textBoxTelefono.Text;
                 enlacePaciente.Direccion = textBoxDireccion.Text;
@@ -181,7 +186,6 @@ namespace Presentacion_GUI
                 Limpiar();
             }
         }
-
         private bool CamposEstanCompletos(params TextBox[] controles)
         {
             foreach (var control in controles)
@@ -194,28 +198,28 @@ namespace Presentacion_GUI
             return false;
         }
 
-
+        //ACCIONES
         private void FormListadoGeneralcs_Load(object sender, EventArgs e)
         {
             CargarDatos();
             CargarLista();
         }
-
+        private void buttonNuevo_Click(object sender, EventArgs e)
+        {
+            Limpiar();
+        }
         private void buttonEliminar_Click(object sender, EventArgs e)
         {
             Eliminar();
         }
-
         private void buttonsalir_Click(object sender, EventArgs e)
         {
             Close();
         }
-
         private void lstPacientes_DoubleClick(object sender, EventArgs e)
         {
             dobleClick();
         }
-
         private void buttonActualizar_Click(object sender, EventArgs e)
         {
             Actualizar();
@@ -223,27 +227,10 @@ namespace Presentacion_GUI
             CargarLista();
             Limpiar();
         }
-
-        void closing(FormClosingEventArgs e)
-        {
-            var respuesta = MessageBox.Show("¿Desea Salir?", "Agenda de contactos",
-                                             MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-            if (respuesta == DialogResult.Yes)
-            {
-                Owner.Show();
-                Dispose();
-            }
-            else
-            {
-                e.Cancel = true;
-            }
-        }
         private void FormListadoGeneralcs_FormClosing(object sender, FormClosingEventArgs e)
         {
             closing(e);
         }
-
         private void buttonfiltar_Click(object sender, EventArgs e)
         {
             /*var busqueda = textBoxBusqueda.Text;
@@ -262,8 +249,6 @@ namespace Presentacion_GUI
                 }
             }*/
         }
-
-
     }
 }
 

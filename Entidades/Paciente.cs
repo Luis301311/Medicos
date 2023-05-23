@@ -14,7 +14,7 @@ namespace Entidades
 
         public Paciente(int id, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, int edad, DateTime fechaNacimiento, string telefono, string correo,
                         string regimen, string nacionalidad, string estadoCivil, string nivelEducativo,
-                        string direccion, string ocupacion)
+                        string direccion, string ocupacion, string tipo_sangre)
                         : base (id, primerNombre, segundoNombre, primerApellido, segundoApellido, telefono,correo,edad)
         {
             Regimen = regimen;
@@ -24,6 +24,7 @@ namespace Entidades
             Direccion = direccion;
             Ocupacion = ocupacion;
             FechaNacimiento = fechaNacimiento;
+            Tipo_Sangre = tipo_sangre;
         }
 
         public string Regimen { get; set; }
@@ -32,14 +33,9 @@ namespace Entidades
         public string NivelEducativo { get; set; }
         public string Direccion { get; set;}
         public string Ocupacion { get; set;}
-       
         public DateTime FechaNacimiento { get; set; }
+        public string Tipo_Sangre { get; set; }
 
-        public override string ToString()
-        {
-            return $"{Id};{PrimerNombre};{SegundoNombre};{PrimerApellido};{SegundoApellido};{Edad};{FechaNacimiento};{Telefono};{Direccion};{Ocupacion};{Correo};{Regimen};" +
-                $"{Nacionalidad};{EstadoCivil};{NivelEducativo}";
-        }
     }
 }
 

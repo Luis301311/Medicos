@@ -1,5 +1,4 @@
-﻿using Datos;
-using Entidades;
+﻿using Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +10,7 @@ namespace Logica
     public class ServicioMedico : InterfazHospital<Medico>
     {
         List<Medico> medicos = null;
-        ArchivoMedico archivo = new ArchivoMedico("Medicos.txt");
+        //ArchivoMedico archivo = new ArchivoMedico("Medicos.txt");
 
         public ServicioMedico()
         {
@@ -27,7 +26,7 @@ namespace Logica
                 }
                 else if (Exist(enlace.Id) == false)
                 {
-                    archivo.Guardar(enlace);
+          //          archivo.Guardar(enlace);
                     return true;
                 }
                 return false;
@@ -49,7 +48,7 @@ namespace Logica
                     lista.Add(item);
                 }
             }
-            return archivo.Eliminar(lista);
+            return true;
         }
 
         public bool Exist(int id)
@@ -70,7 +69,7 @@ namespace Logica
 
         public List<Medico> GetByAll()
         {
-            medicos = archivo.Leer();
+            //medicos = archivo.Leer();
 
             if (medicos == null) return null;
 
@@ -111,7 +110,7 @@ namespace Logica
                     item.Especialidad = medico.Especialidad;
                 }
             }
-            archivo.Eliminar(listaActualizar);
+            //archivo.Eliminar(listaActualizar);
             return true;
         }
     }

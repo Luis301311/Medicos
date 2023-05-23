@@ -32,7 +32,6 @@
             this.labelnombre = new System.Windows.Forms.Label();
             this.labeltelefono = new System.Windows.Forms.Label();
             this.labelcorreo = new System.Windows.Forms.Label();
-            this.labelEdad = new System.Windows.Forms.Label();
             this.labelRegimen = new System.Windows.Forms.Label();
             this.labelnacionalidad = new System.Windows.Forms.Label();
             this.labelocupacion = new System.Windows.Forms.Label();
@@ -46,11 +45,9 @@
             this.textBoxNivel_Educativo = new System.Windows.Forms.TextBox();
             this.textBoxEstado_Civil = new System.Windows.Forms.TextBox();
             this.textBoxNacionalidad = new System.Windows.Forms.TextBox();
-            this.textBoxEdad = new System.Windows.Forms.TextBox();
             this.textBoxCorreo = new System.Windows.Forms.TextBox();
             this.textBoxTelefono = new System.Windows.Forms.TextBox();
             this.textBoxPrimerNombre = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.fecha_Nacimiento = new System.Windows.Forms.DateTimePicker();
             this.buttonfiltar = new System.Windows.Forms.Button();
             this.buttonEliminar = new System.Windows.Forms.Button();
@@ -67,24 +64,21 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.buttonActualizar = new System.Windows.Forms.Button();
             this.lstPacientes = new System.Windows.Forms.ListBox();
             this.labelNotificacion = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.GrillaPacientes = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.textBoxSangre = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GrillaPacientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelid
@@ -131,17 +125,6 @@
             this.labelcorreo.TabIndex = 3;
             this.labelcorreo.Text = "Correo:";
             // 
-            // labelEdad
-            // 
-            this.labelEdad.AutoSize = true;
-            this.labelEdad.BackColor = System.Drawing.SystemColors.Info;
-            this.labelEdad.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEdad.Location = new System.Drawing.Point(548, 102);
-            this.labelEdad.Name = "labelEdad";
-            this.labelEdad.Size = new System.Drawing.Size(45, 15);
-            this.labelEdad.TabIndex = 4;
-            this.labelEdad.Text = "Edad:";
-            // 
             // labelRegimen
             // 
             this.labelRegimen.AutoSize = true;
@@ -160,9 +143,9 @@
             this.labelnacionalidad.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelnacionalidad.Location = new System.Drawing.Point(281, 12);
             this.labelnacionalidad.Name = "labelnacionalidad";
-            this.labelnacionalidad.Size = new System.Drawing.Size(96, 15);
+            this.labelnacionalidad.Size = new System.Drawing.Size(54, 15);
             this.labelnacionalidad.TabIndex = 6;
-            this.labelnacionalidad.Text = "Nacionalidad";
+            this.labelnacionalidad.Text = "Ciudad";
             // 
             // labelocupacion
             // 
@@ -262,13 +245,6 @@
             this.textBoxNacionalidad.Size = new System.Drawing.Size(109, 20);
             this.textBoxNacionalidad.TabIndex = 17;
             // 
-            // textBoxEdad
-            // 
-            this.textBoxEdad.Location = new System.Drawing.Point(645, 102);
-            this.textBoxEdad.Name = "textBoxEdad";
-            this.textBoxEdad.Size = new System.Drawing.Size(107, 20);
-            this.textBoxEdad.TabIndex = 19;
-            // 
             // textBoxCorreo
             // 
             this.textBoxCorreo.Location = new System.Drawing.Point(645, 53);
@@ -289,16 +265,6 @@
             this.textBoxPrimerNombre.Name = "textBoxPrimerNombre";
             this.textBoxPrimerNombre.Size = new System.Drawing.Size(105, 20);
             this.textBoxPrimerNombre.TabIndex = 22;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(26, 35);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(886, 254);
-            this.dataGridView1.TabIndex = 23;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // fecha_Nacimiento
             // 
@@ -446,6 +412,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.textBoxSangre);
+            this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.buttonActualizar);
             this.tabPage1.Controls.Add(this.lstPacientes);
@@ -458,7 +426,6 @@
             this.tabPage1.Controls.Add(this.textBoxPrimerApellido);
             this.tabPage1.Controls.Add(this.labelcorreo);
             this.tabPage1.Controls.Add(this.textBoxSegundoApellido);
-            this.tabPage1.Controls.Add(this.labelEdad);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.labelRegimen);
             this.tabPage1.Controls.Add(this.label2);
@@ -482,8 +449,6 @@
             this.tabPage1.Controls.Add(this.textBoxNacionalidad);
             this.tabPage1.Controls.Add(this.textBoxTelefono);
             this.tabPage1.Controls.Add(this.textBoxCorreo);
-            this.tabPage1.Controls.Add(this.textBoxEdad);
-            this.tabPage1.Controls.Add(this.pictureBox3);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -491,6 +456,18 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Gestion";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.SystemColors.Info;
+            this.label6.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(548, 92);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(63, 30);
+            this.label6.TabIndex = 48;
+            this.label6.Text = "Tipo De \r\nSangre:";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // label5
             // 
@@ -531,22 +508,11 @@
             this.labelNotificacion.Size = new System.Drawing.Size(0, 13);
             this.labelNotificacion.TabIndex = 43;
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::Presentacion_GUI.Properties.Resources.vector_JUL_2021_73;
-            this.pictureBox3.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(933, 307);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 47;
-            this.pictureBox3.TabStop = false;
-            // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.dataGridView1);
+            this.tabPage2.Controls.Add(this.GrillaPacientes);
             this.tabPage2.Controls.Add(this.buttonfiltar);
             this.tabPage2.Controls.Add(this.textBoxBusqueda);
-            this.tabPage2.Controls.Add(this.pictureBox4);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -555,15 +521,14 @@
             this.tabPage2.Text = "Lista De Pacientes";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // pictureBox4
+            // GrillaPacientes
             // 
-            this.pictureBox4.Image = global::Presentacion_GUI.Properties.Resources.vector_JUL_2021_73;
-            this.pictureBox4.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(933, 307);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 32;
-            this.pictureBox4.TabStop = false;
+            this.GrillaPacientes.BackgroundColor = System.Drawing.Color.White;
+            this.GrillaPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GrillaPacientes.Location = new System.Drawing.Point(26, 35);
+            this.GrillaPacientes.Name = "GrillaPacientes";
+            this.GrillaPacientes.Size = new System.Drawing.Size(886, 254);
+            this.GrillaPacientes.TabIndex = 23;
             // 
             // label4
             // 
@@ -591,15 +556,12 @@
             this.pictureBox2.TabIndex = 46;
             this.pictureBox2.TabStop = false;
             // 
-            // pictureBox1
+            // textBoxSangre
             // 
-            this.pictureBox1.Image = global::Presentacion_GUI.Properties.Resources.gabinete_hospital_ortodoncista_estomatologia_vacia_nadie;
-            this.pictureBox1.Location = new System.Drawing.Point(1, 1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1092, 505);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 45;
-            this.pictureBox1.TabStop = false;
+            this.textBoxSangre.Location = new System.Drawing.Point(645, 99);
+            this.textBoxSangre.Name = "textBoxSangre";
+            this.textBoxSangre.Size = new System.Drawing.Size(107, 20);
+            this.textBoxSangre.TabIndex = 49;
             // 
             // FormListadoGeneralcs
             // 
@@ -610,21 +572,17 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.buttonsalir);
-            this.Controls.Add(this.pictureBox1);
             this.Name = "FormListadoGeneralcs";
             this.Text = "Gestión Pacientes";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormListadoGeneralcs_FormClosing);
             this.Load += new System.EventHandler(this.FormListadoGeneralcs_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GrillaPacientes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -636,7 +594,6 @@
         private System.Windows.Forms.Label labelnombre;
         private System.Windows.Forms.Label labeltelefono;
         private System.Windows.Forms.Label labelcorreo;
-        private System.Windows.Forms.Label labelEdad;
         private System.Windows.Forms.Label labelRegimen;
         private System.Windows.Forms.Label labelnacionalidad;
         private System.Windows.Forms.Label labelocupacion;
@@ -650,11 +607,9 @@
         private System.Windows.Forms.TextBox textBoxNivel_Educativo;
         private System.Windows.Forms.TextBox textBoxEstado_Civil;
         private System.Windows.Forms.TextBox textBoxNacionalidad;
-        private System.Windows.Forms.TextBox textBoxEdad;
         private System.Windows.Forms.TextBox textBoxCorreo;
         private System.Windows.Forms.TextBox textBoxTelefono;
         private System.Windows.Forms.TextBox textBoxPrimerNombre;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DateTimePicker fecha_Nacimiento;
         private System.Windows.Forms.Button buttonfiltar;
         private System.Windows.Forms.Button buttonEliminar;
@@ -677,9 +632,9 @@
         private System.Windows.Forms.ListBox lstPacientes;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.DataGridView GrillaPacientes;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBoxSangre;
     }
 }

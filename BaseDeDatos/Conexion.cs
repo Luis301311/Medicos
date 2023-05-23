@@ -4,30 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
-using System.Data.SqlClient;
+using System.Data.OracleClient;
 
 namespace BaseDeDatos
 {
     public class Conexion
     {
-        private SqlConnection Conectar = new SqlConnection("SERVER=.\\SQLEXPRESS;DATABASE=PROYECTO; integrated security = true");
-
-        public SqlConnection AbrirConexion()
+        public  OracleConnection conexion = new OracleConnection("DATA SOURCE = localhost:1521/xepdb1;User Id = Miguel ;Password = miguelmeza28");
+        public OracleConnection AbrirConexion()
         {
-            if(Conectar.State == ConnectionState.Closed)
-            {
-                Conectar.Open();
-            }
-            return Conectar;
+            conexion.Open();
+            return conexion;
         }
 
-        public SqlConnection CerrarConexion()
+        public OracleConnection CerrarConexion()
         {
-            if (Conectar.State == ConnectionState.Open)
-            {
-                Conectar.Close();
-            }
-            return Conectar;
+            conexion.Close();
+            return conexion;
         }
     }
 }

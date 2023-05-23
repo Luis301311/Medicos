@@ -32,8 +32,6 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnConsulta = new System.Windows.Forms.Button();
             this.btnMedico = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnPaciente
@@ -79,16 +77,6 @@
             this.btnMedico.UseVisualStyleBackColor = true;
             this.btnMedico.Click += new System.EventHandler(this.btnMedico_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Presentacion_GUI.Properties.Resources.vector_JUL_2021_73;
-            this.pictureBox1.Location = new System.Drawing.Point(0, -1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(291, 217);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -98,10 +86,8 @@
             this.Controls.Add(this.btnConsulta);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnPaciente);
-            this.Controls.Add(this.pictureBox1);
             this.Name = "FrmPrincipal";
             this.Text = "Inicio";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -112,6 +98,5 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnConsulta;
         private System.Windows.Forms.Button btnMedico;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

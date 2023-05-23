@@ -52,14 +52,13 @@
       <Project>{196d26c8-2a32-4ca2-a12e-69fb90a56afa}</Project>
       <Name>BaseDeDatos</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Datos\Datos.csproj">
-      <Project>{e3d92af8-e50f-4be7-a56e-7be5f8bf1510}</Project>
-      <Name>Datos</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Entidades\Entidades.csproj">
       <Project>{8e8e3735-80f5-4b06-bfe5-35815ca8e79f}</Project>
       <Name>Entidades</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -10,7 +10,7 @@ namespace Entidades
     {
 
         public Medico() { }
-        public Medico(int Id, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, int edad, string especialidad, string correo,
+        public Medico(int Id, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido,int edad, string especialidad, string correo,
             string telefono, int aniosExperiencia) : base(Id,primerNombre, segundoNombre, primerApellido, segundoApellido, telefono, correo, edad)
         {
 

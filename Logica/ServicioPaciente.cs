@@ -4,7 +4,6 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Datos;
 using Entidades;
 using BaseDeDatos;
 using System.Data;
@@ -14,13 +13,13 @@ namespace Logica
     public class ServicioPaciente : InterfazHospital<Paciente>
     {
         List<Paciente> pacientes = null;
-        ArchivoPaciente archivo = new ArchivoPaciente("Paciente.txt");
+        //ArchivoPaciente archivo = new ArchivoPaciente("Paciente.txt");
         DatosPacientes enlacePaciente = new DatosPacientes();
         DataTable tabla = new DataTable();
 
         public DataTable MostrarPacientes()
         {     
-            tabla = enlacePaciente.Mostrar();
+            tabla = enlacePaciente.MostrarPacientes();
             return tabla;
         }
 
@@ -36,24 +35,7 @@ namespace Logica
 
         public bool Add(Paciente enlace)
         {
-            /*try
-            {
-                if (enlace == null)
-                {
-                    return false;
-                }
-                else if (Exist(enlace.Id) == false)
-                {
-                    archivo.Guardar(enlace);
-                    return true;
-                }
-                return false;
-            }
-            catch (Exception)
-            {
-                return false;
-            }*/
-            enlacePaciente.Insertar(enlace);
+            enlacePaciente.InsertarPaciente(enlace);
             return true;
         }
 
@@ -69,7 +51,7 @@ namespace Logica
                     lista.Add(item);
                 }
             }
-            return archivo.Eliminar(lista);
+            return true;
         }
 
         public bool Exist(int id)
@@ -89,7 +71,7 @@ namespace Logica
 
         public List<Paciente> GetByAll()
         {
-            pacientes=archivo.Leer();
+           // pacientes=archivo.Leer();
 
             if (pacientes == null) return null;
 
@@ -114,28 +96,7 @@ namespace Logica
 
         public bool Update(Paciente paciente)
         {
-            var listaActualizar = GetByAll();
-            foreach (var item in listaActualizar)
-            {
-                if (item.Id == paciente.Id)
-                {
-                    item.PrimerNombre = paciente.PrimerNombre;
-                    item.SegundoNombre = paciente.SegundoNombre;
-                    item.PrimerApellido = paciente.PrimerApellido;
-                    item.Edad= paciente.Edad;
-                    item.Nacionalidad = paciente.Nacionalidad;
-                    item.Ocupacion= paciente.Ocupacion;
-                    item.Direccion= paciente.Direccion;
-                    item.FechaNacimiento = paciente.FechaNacimiento;
-                    item.Correo= paciente.Correo;
-                    item.NivelEducativo=paciente.NivelEducativo;
-                    item.EstadoCivil=paciente.EstadoCivil;
-                    item.Regimen=paciente.Regimen;
-                    item.Telefono=paciente.Telefono;
-                    item.SegundoApellido=paciente.SegundoApellido;
-                }
-            }
-            archivo.Eliminar(listaActualizar);
+            enlacePaciente.ActualizarPacinete(paciente);
             return true;
         }
        
