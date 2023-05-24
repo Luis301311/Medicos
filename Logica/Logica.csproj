@@ -46,6 +46,7 @@
     <Compile Include="ServicioConsulta.cs" />
     <Compile Include="ServicioMedico.cs" />
     <Compile Include="ServicioPaciente.cs" />
+    <Compile Include="ServicioTipoDeSangre.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BaseDeDatos\BaseDeDatos.csproj">

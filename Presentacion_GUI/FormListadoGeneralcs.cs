@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Drawing;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
 using Logica;
-using System.Data;
-using System.Linq;
 
 namespace Presentacion_GUI
 {
@@ -14,8 +10,7 @@ namespace Presentacion_GUI
         //INSTANCIAS
         Paciente enlacePaciente = new Paciente();
         ServicioPaciente servicio = new ServicioPaciente();
-        DataTable tabla = new DataTable();
-
+        ServicioTipoDeSangre ServicioTipoDeSangre= new ServicioTipoDeSangre();
         public FormListadoGeneralcs()
         {
             InitializeComponent();
@@ -26,14 +21,14 @@ namespace Presentacion_GUI
         void CargarCiudades()
         {
             cmbCiudad.DataSource = servicio.ObtenerC();
-            cmbCiudad.ValueMember = "id_cuidad";
             cmbCiudad.DisplayMember = "nombre";
+            cmbCiudad.ValueMember = "id_cuidad";
         }
         void CargarTipoSangre()
         {
-            cmbSangre.DataSource = servicio.ObtenerT();
-            cmbSangre.ValueMember = "id_sangre";
-            cmbSangre.DisplayMember = "nombre";
+            cmbSangre.DataSource = ServicioTipoDeSangre.GetByAll();
+            cmbSangre.ValueMember = "Id";
+            cmbSangre.DisplayMember = "Nombre";
         }
         void closing(FormClosingEventArgs e)
         {
@@ -55,33 +50,38 @@ namespace Presentacion_GUI
             if (lstPacientes.SelectedIndex != -1)
             {
                 int num = lstPacientes.SelectedIndex;
+                var lista = servicio.GetByAll();
+                if (lista != null)
+                {
+                    textBoxId.Text = lista[num].Id.ToString();
+                    textBoxPrimerNombre.Text = lista[num].PrimerNombre;
+                    textBoxSegundoNombre.Text = lista[num].SegundoNombre;
+                    textBoxPrimerApellido.Text = lista[num].PrimerApellido;
+                    textBoxSegundoApellido.Text = lista[num].SegundoApellido;
+                    fecha_Nacimiento.Value = lista[num].FechaNacimiento;
+                    textBoxTelefono.Text = lista[num].Telefono;
+                    textBoxCorreo.Text = lista[num].Correo;
+                    txtRegimen.Text = lista[num].Regimen;
+                    textBoxEstado_Civil.Text = lista[num].EstadoCivil;
+                    textBoxDireccion.Text = lista[num].Direccion;
+                    textBoxOcupacion.Text = lista[num].Ocupacion;
+                    textBoxNivel_Educativo.Text = lista[num].NivelEducativo;
+                    cmbCiudad.Text = lista[num].Nacionalidad;
+                    cmbSangre.Text = lista[num].Tipo_Sangre;
 
-                textBoxId.Text = GrillaPacientes.Rows[num].Cells[0].Value.ToString();
-                textBoxPrimerNombre.Text = GrillaPacientes.Rows[num].Cells[1].Value.ToString();
-                textBoxSegundoNombre.Text = GrillaPacientes.Rows[num].Cells[2].Value.ToString();
-                textBoxPrimerApellido.Text = GrillaPacientes.Rows[num].Cells[3].Value.ToString();
-                textBoxSegundoApellido.Text = GrillaPacientes.Rows[num].Cells[4].Value.ToString();
-                fecha_Nacimiento.Value = DateTime.Parse(GrillaPacientes.Rows[num].Cells[5].Value.ToString());
-                textBoxTelefono.Text = GrillaPacientes.Rows[num].Cells[6].Value.ToString();
-                textBoxCorreo.Text = GrillaPacientes.Rows[num].Cells[7].Value.ToString();
-                txtRegimen.Text = GrillaPacientes.Rows[num].Cells[8].Value.ToString();
-                textBoxEstado_Civil.Text = GrillaPacientes.Rows[num].Cells[9].Value.ToString();
-                textBoxDireccion.Text = GrillaPacientes.Rows[num].Cells[10].Value.ToString();
-                textBoxOcupacion.Text = GrillaPacientes.Rows[num].Cells[11].Value.ToString();
-                textBoxNivel_Educativo.Text = GrillaPacientes.Rows[num].Cells[12].Value.ToString();
-                cmbCiudad.Text = GrillaPacientes.Rows[num].Cells[13].Value.ToString();
-                cmbSangre.Text = GrillaPacientes.Rows[num].Cells[14].Value.ToString();
-                
-
-                textBoxId.Enabled = false;
+                    textBoxId.Enabled = false;
+                }
             }
         }
         void CargarLista()
         {
-            lstPacientes.Items.Clear();
-            for (int fila = 0; fila < GrillaPacientes.Rows.Count - 1; fila++)
+            var lista = servicio.GetByAll();
+            if (lista != null)
             {
-                lstPacientes.Items.Add(GrillaPacientes.Rows[fila].Cells[1].Value.ToString()+" "+ GrillaPacientes.Rows[fila].Cells[3].Value.ToString());
+                foreach (var item in lista) 
+                {
+                    lstPacientes.Items.Add(item.PrimerNombre+" "+item.PrimerApellido);
+                }
             }
         }
         void Limpiar()
@@ -127,7 +127,7 @@ namespace Presentacion_GUI
                 enlacePaciente.EstadoCivil = textBoxEstado_Civil.Text;
                 enlacePaciente.NivelEducativo = textBoxNivel_Educativo.Text;
 
-
+                MessageBox.Show(enlacePaciente.Nacionalidad + " " + enlacePaciente.Tipo_Sangre);
                 if (servicio.Add(enlacePaciente) == true)
                 {
                     MessageBox.Show("Paciente Agregado Exitosamente", "GUARDAR PACIENTE",
@@ -195,11 +195,27 @@ namespace Presentacion_GUI
         {
             if(textBoxId.Text!="")
             {
-                servicio.Delete(int.Parse(textBoxId.Text));
-                MessageBox.Show("Paciente " + textBoxPrimerNombre.Text + " " + textBoxPrimerApellido.Text + " ELIMINADO.");
+                
+                var respuesta = MessageBox.Show("¿Desea Eliminar Al Paciente?", "ELIMINACION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (respuesta == DialogResult.Yes)
+                {
+                    if (servicio.Delete(int.Parse(textBoxId.Text)))
+                    {
+                        MessageBox.Show("Paciente " + textBoxPrimerNombre.Text + " " + textBoxPrimerApellido.Text + " ELIMINADO.", "ELIMINACION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error Al Eliminar", "ELIMINACION",
+                                             MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Eliminacion Cancelada", "ELIMINACION",
+                                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
                 CargarDatos();
                 CargarLista();
-                Limpiar();
             }
         }
         void buscarCedula()
@@ -218,6 +234,7 @@ namespace Presentacion_GUI
             return false;
         }
         #endregion
+
 
         #region ACCIONES
         void buttonagregar_Click(object sender, EventArgs e)
@@ -256,7 +273,6 @@ namespace Presentacion_GUI
             Actualizar();
             CargarDatos();
             CargarLista();
-            Limpiar();
         }
         private void FormListadoGeneralcs_FormClosing(object sender, FormClosingEventArgs e)
         {

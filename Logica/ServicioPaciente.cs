@@ -39,17 +39,7 @@ namespace Logica
 
         public bool Delete(int id)
         {
-            
-            var lista = new List<Paciente>();
-
-            foreach(var item in GetByAll())
-            {
-                if(item.Id != id)
-                {
-                    lista.Add(item);
-                }
-            }
-            return true;
+            return enlacePaciente.EliminarPaciente(id.ToString());
         }
 
         public bool Exist(int id)
@@ -69,9 +59,8 @@ namespace Logica
 
         public List<Paciente> GetByAll()
         {
-            // pacientes=archivo.Leer();
-
             var lista = enlacePaciente.ObtenerLista();
+            if (lista == null) return null;
             return lista;
         }
 

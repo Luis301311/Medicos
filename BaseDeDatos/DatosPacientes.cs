@@ -16,26 +16,34 @@ namespace BaseDeDatos
 
         public List<Paciente> ObtenerLista()
         {
-            var list = new List<Paciente>();
-            OracleCommand comandoPacientes = new OracleCommand();
-            con.AbrirConexion();
-
-            comandoPacientes.CommandText = "select * from pacientes";
-            comandoPacientes.Connection = con.conexion;
-            var dataReader = comandoPacientes.ExecuteReader();
-
-            if(dataReader.HasRows)
+            try
             {
-                while(dataReader.Read()) 
+                var list = new List<Paciente>();
+                OracleCommand comandoPacientes = new OracleCommand();
+                con.AbrirConexion();
+
+                comandoPacientes.CommandText = "select * from pacientes where activo = 1 order by cedula_paciente";
+                comandoPacientes.Connection = con.conexion;
+                var dataReader = comandoPacientes.ExecuteReader();
+
+                if(dataReader.HasRows)
                 {
-                    Paciente paciente = Mapeador(dataReader);
-                    list.Add(paciente);
+                    while(dataReader.Read()) 
+                    {
+                        Paciente paciente = Mapeador(dataReader);
+                        list.Add(paciente);
+                    }
                 }
+
+                con.CerrarConexion();
+
+                return list;
             }
+            catch (Exception)
+            {
 
-            con.CerrarConexion();
-
-            return list;
+                return null;
+            }
         }
         public DataTable ObtenerTablaPacientes()
         {
@@ -195,6 +203,29 @@ namespace BaseDeDatos
 
             con.CerrarConexion();
             return dt;
+        }
+
+        public bool EliminarPaciente(string cedula)
+        {
+            OracleCommand comandoEliminar = new OracleCommand();
+
+            try
+            {
+                con.AbrirConexion();
+
+                comandoEliminar.CommandText = "EliminarPaciente";
+                comandoEliminar.Connection = con.conexion;
+                comandoEliminar.CommandType = CommandType.StoredProcedure;
+
+                comandoEliminar.Parameters.Add("cedula",OracleDbType.Varchar2).Value= cedula;
+                comandoEliminar.ExecuteNonQuery();
+                con.CerrarConexion();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }
