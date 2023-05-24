@@ -75,6 +75,7 @@ namespace Presentacion_GUI
         }
         void CargarLista()
         {
+            lstPacientes.Items.Clear();
             var lista = servicio.GetByAll();
             if (lista != null)
             {

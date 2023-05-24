@@ -159,8 +159,6 @@ namespace BaseDeDatos
             {
                 return false;
             }
-
-            
         }
         public Paciente Mapeador(OracleDataReader reader)
         {
@@ -204,7 +202,6 @@ namespace BaseDeDatos
             con.CerrarConexion();
             return dt;
         }
-
         public bool EliminarPaciente(string cedula)
         {
             OracleCommand comandoEliminar = new OracleCommand();

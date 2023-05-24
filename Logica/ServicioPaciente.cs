@@ -13,7 +13,6 @@ namespace Logica
     public class ServicioPaciente : InterfazHospital<Paciente>
     {
         List<Paciente> pacientes = null;
-        //ArchivoPaciente archivo = new ArchivoPaciente("Paciente.txt");
         DatosPacientes enlacePaciente = new DatosPacientes();
         DataTable tabla = new DataTable();
 
@@ -71,8 +70,8 @@ namespace Logica
 
         public bool Update(Paciente paciente)
         {
-            return enlacePaciente.ActualizarPacinete(paciente);
-
+            if(paciente != null) return enlacePaciente.ActualizarPacinete(paciente);
+            return false;
         }
        
         public DataTable ObtenerC()

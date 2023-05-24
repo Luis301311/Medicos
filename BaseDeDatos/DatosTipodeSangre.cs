@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
-using System.Runtime.InteropServices;
-using System.Runtime.Remoting.Messaging;
+using System.Runtime.CompilerServices;
 using Entidades;
 using Oracle.ManagedDataAccess.Client;
 
@@ -46,7 +43,6 @@ namespace BaseDeDatos
                 return null;
             }
         }
-
         private TipodeSangre Mapeador(OracleDataReader reader)
         {
             if (!reader.HasRows) return null;
@@ -55,8 +51,66 @@ namespace BaseDeDatos
                 tipo.Id = (string)reader["ID_SANGRE"];
                 tipo.Nombre = (string)reader["NOMBRE"];
               
-
                 return tipo;
+            }
+        }
+        public bool InsertarTiposSangre(TipodeSangre tipo)
+        {
+            try
+            {
+                OracleCommand comandoTipo = new OracleCommand();
+
+                con.AbrirConexion();
+                comandoTipo.CommandText = "insertarTipoSangre";
+                comandoTipo.Connection = con.conexion;
+                comandoTipo.CommandType = CommandType.StoredProcedure;
+                comandoTipo.Parameters.Add("Id_tipo",OracleDbType.Varchar2).Value = tipo.Id;
+                comandoTipo.Parameters.Add("Nombre",OracleDbType.Varchar2).Value = tipo.Nombre;
+
+                comandoTipo.ExecuteNonQuery();
+                con.CerrarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public bool ActualizarTiposSangre(TipodeSangre tipo)
+        {
+            try
+            {
+                OracleCommand comandoActualizar = new OracleCommand();
+
+                con.AbrirConexion();
+
+                comandoActualizar.CommandText = "actualizarTipoSangre";
+                comandoActualizar.Connection = con.conexion;
+                comandoActualizar.CommandType = CommandType.StoredProcedure;
+                comandoActualizar.Parameters.Add("Id_tipo",OracleDbType.Varchar2).Value = tipo.Id;
+                comandoActualizar.Parameters.Add("Nombre",OracleDbType.Varchar2).Value = tipo.Nombre;
+                comandoActualizar.ExecuteNonQuery();
+
+                con.CerrarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public bool EliminarTipoSangre(string id)
+        {
+            try
+            {
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
             }
         }
     }
