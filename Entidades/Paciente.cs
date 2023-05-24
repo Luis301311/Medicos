@@ -8,25 +8,7 @@ namespace Entidades
 {
     public class Paciente:Persona
     {
-        public Paciente()
-        {
-        }
-
-        public Paciente(int id, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, int edad, DateTime fechaNacimiento, string telefono, string correo,
-                        string regimen, string nacionalidad, string estadoCivil, string nivelEducativo,
-                        string direccion, string ocupacion, string tipo_sangre)
-                        : base (id, primerNombre, segundoNombre, primerApellido, segundoApellido, telefono,correo,edad)
-        {
-            Regimen = regimen;
-            Nacionalidad = nacionalidad;
-            EstadoCivil = estadoCivil;
-            NivelEducativo = nivelEducativo;
-            Direccion = direccion;
-            Ocupacion = ocupacion;
-            FechaNacimiento = fechaNacimiento;
-            Tipo_Sangre = tipo_sangre;
-        }
-
+        public Paciente() {}
         public string Regimen { get; set; }
         public string Nacionalidad { get; set; }
         public string EstadoCivil { get; set; }

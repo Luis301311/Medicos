@@ -21,7 +21,20 @@ namespace Presentacion_GUI
             InitializeComponent();
         }
 
-        //FUNCIONES
+        #region FUNCIONES
+
+        void CargarCiudades()
+        {
+            cmbCiudad.DataSource = servicio.ObtenerC();
+            cmbCiudad.ValueMember = "id_cuidad";
+            cmbCiudad.DisplayMember = "nombre";
+        }
+        void CargarTipoSangre()
+        {
+            cmbSangre.DataSource = servicio.ObtenerT();
+            cmbSangre.ValueMember = "id_sangre";
+            cmbSangre.DisplayMember = "nombre";
+        }
         void closing(FormClosingEventArgs e)
         {
             var respuesta = MessageBox.Show("¿Desea Salir?", "Agenda de contactos",
@@ -37,7 +50,7 @@ namespace Presentacion_GUI
                 e.Cancel = true;
             }
         }
-        void dobleClick()
+        void DobleClick()
         {
             if (lstPacientes.SelectedIndex != -1)
             {
@@ -48,16 +61,17 @@ namespace Presentacion_GUI
                 textBoxSegundoNombre.Text = GrillaPacientes.Rows[num].Cells[2].Value.ToString();
                 textBoxPrimerApellido.Text = GrillaPacientes.Rows[num].Cells[3].Value.ToString();
                 textBoxSegundoApellido.Text = GrillaPacientes.Rows[num].Cells[4].Value.ToString();
-                textBoxCorreo.Text = GrillaPacientes.Rows[num].Cells[8].Value.ToString();
-                textBoxEstado_Civil.Text = GrillaPacientes.Rows[num].Cells[13].Value.ToString();
+                fecha_Nacimiento.Value = DateTime.Parse(GrillaPacientes.Rows[num].Cells[5].Value.ToString());
+                textBoxTelefono.Text = GrillaPacientes.Rows[num].Cells[6].Value.ToString();
+                textBoxCorreo.Text = GrillaPacientes.Rows[num].Cells[7].Value.ToString();
+                txtRegimen.Text = GrillaPacientes.Rows[num].Cells[8].Value.ToString();
+                textBoxEstado_Civil.Text = GrillaPacientes.Rows[num].Cells[9].Value.ToString();
                 textBoxDireccion.Text = GrillaPacientes.Rows[num].Cells[10].Value.ToString();
-                textBoxNacionalidad.Text = GrillaPacientes.Rows[num].Cells[13].Value.ToString();
-                textBoxNivel_Educativo.Text = GrillaPacientes.Rows[num].Cells[12].Value.ToString();
                 textBoxOcupacion.Text = GrillaPacientes.Rows[num].Cells[11].Value.ToString();
-                comboBox1.Text = GrillaPacientes.Rows[num].Cells[9].Value.ToString();
-                //fecha_Nacimiento.Value = DateTime.Parse(GrillaPacientes.Rows[num].Cells[6].Value.ToString());
-                textBoxSangre.Text = GrillaPacientes.Rows[num].Cells[14].Value.ToString();
-                textBoxTelefono.Text = GrillaPacientes.Rows[num].Cells[7].Value.ToString();
+                textBoxNivel_Educativo.Text = GrillaPacientes.Rows[num].Cells[12].Value.ToString();
+                cmbCiudad.Text = GrillaPacientes.Rows[num].Cells[13].Value.ToString();
+                cmbSangre.Text = GrillaPacientes.Rows[num].Cells[14].Value.ToString();
+                
 
                 textBoxId.Enabled = false;
             }
@@ -70,74 +84,60 @@ namespace Presentacion_GUI
                 lstPacientes.Items.Add(GrillaPacientes.Rows[fila].Cells[1].Value.ToString()+" "+ GrillaPacientes.Rows[fila].Cells[3].Value.ToString());
             }
         }
-        private void Limpiar()
+        void Limpiar()
         {
-            textBoxId.Enabled = true;
-            textBoxId.Focus();
-            textBoxId.Clear();
-            fecha_Nacimiento.Value = DateTime.Today;
+        textBoxId.Enabled = true;
+        textBoxId.Focus();
+        textBoxId.Clear();
+        fecha_Nacimiento.Value = DateTime.Today;
 
-            textBoxPrimerNombre.Clear();
-            textBoxSegundoNombre.Clear();
-            textBoxPrimerApellido.Clear();
-            textBoxSegundoApellido.Clear();
-            textBoxTelefono.Clear();
-            textBoxCorreo.Clear();
-            textBoxSangre.Clear();
-            comboBox1.Text = string.Empty;
-            textBoxNacionalidad.Clear();
-            textBoxEstado_Civil.Clear();
-            textBoxNivel_Educativo.Clear();
-            textBoxDireccion.Clear();
-            textBoxOcupacion.Clear();
-
+        textBoxPrimerNombre.Clear();
+        textBoxSegundoNombre.Clear();
+        textBoxPrimerApellido.Clear();
+        textBoxSegundoApellido.Clear();
+        textBoxTelefono.Clear();
+        textBoxCorreo.Clear();
+        cmbSangre.Text = string.Empty;
+        cmbCiudad.Text = string.Empty;
+        txtRegimen.Clear();
+        textBoxEstado_Civil.Clear();
+        textBoxNivel_Educativo.Clear();
+        textBoxDireccion.Clear();
+        textBoxOcupacion.Clear();
         }
-        private void buttonagregar_Click(object sender, EventArgs e)
-        {
-            Guardar();
-            CargarDatos();
-            CargarLista();
-            Limpiar();
-        }
-        private async void Guardar()
+        async void Guardar()
         {
 
-            if (CamposEstanCompletos(textBoxId, textBoxPrimerNombre, textBoxPrimerApellido, textBoxTelefono, textBoxCorreo, textBoxSangre,
-                textBoxNacionalidad, textBoxEstado_Civil, textBoxNivel_Educativo, textBoxDireccion, textBoxOcupacion) == false)
+            if (CamposEstanCompletos(textBoxId, textBoxPrimerNombre, textBoxPrimerApellido, textBoxTelefono, textBoxCorreo,
+                txtRegimen, textBoxEstado_Civil, textBoxNivel_Educativo, textBoxDireccion, textBoxOcupacion) == false)
             {
                 enlacePaciente.Id = int.Parse(textBoxId.Text);
                 enlacePaciente.PrimerNombre = textBoxPrimerNombre.Text;
                 enlacePaciente.SegundoNombre = textBoxSegundoNombre.Text;
                 enlacePaciente.PrimerApellido = textBoxPrimerApellido.Text;
                 enlacePaciente.SegundoApellido = textBoxSegundoApellido.Text;
-                enlacePaciente.Tipo_Sangre = textBoxSangre.Text;
+                enlacePaciente.Tipo_Sangre = cmbSangre.Text;
                 enlacePaciente.FechaNacimiento = fecha_Nacimiento.Value;
                 enlacePaciente.Telefono = textBoxTelefono.Text;
                 enlacePaciente.Direccion = textBoxDireccion.Text;
                 enlacePaciente.Ocupacion = textBoxOcupacion.Text;
                 enlacePaciente.Correo = textBoxCorreo.Text;
-                enlacePaciente.Regimen = comboBox1.Text;
-                enlacePaciente.Nacionalidad = textBoxNacionalidad.Text;
+                enlacePaciente.Regimen = txtRegimen.Text;
+                enlacePaciente.Nacionalidad = cmbCiudad.Text;
                 enlacePaciente.EstadoCivil = textBoxEstado_Civil.Text;
                 enlacePaciente.NivelEducativo = textBoxNivel_Educativo.Text;
 
 
                 if (servicio.Add(enlacePaciente) == true)
                 {
-                    labelNotificacion.Text = "AÑADIDO CORRECTAMENTE";
-                    labelNotificacion.ForeColor = Color.Blue;
-                    await Task.Delay(5000);
-                    labelNotificacion.Text = "";
-
-                
+                    MessageBox.Show("Paciente Agregado Exitosamente", "GUARDAR PACIENTE",
+                                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 else
                 {
-                    labelNotificacion.Text = "ERROR, INTENTE NUEVAMENTE";
-                    labelNotificacion.ForeColor = Color.Red;
-                    await Task.Delay(5000);
-                    labelNotificacion.Text = "";
+                    MessageBox.Show("Paciente Existente", "GUARDAR PACIENTE",
+                                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -146,11 +146,10 @@ namespace Presentacion_GUI
             }
 
         }
-
         public void CargarDatos()
         {
             ServicioPaciente servicio = new ServicioPaciente();
-            GrillaPacientes.DataSource = servicio.MostrarPacientes();
+            GrillaPacientes.DataSource = servicio.TablaPacientes();
         }
         void Actualizar()
         {
@@ -161,18 +160,35 @@ namespace Presentacion_GUI
                 enlacePaciente.SegundoNombre = textBoxSegundoNombre.Text;
                 enlacePaciente.PrimerApellido = textBoxPrimerApellido.Text;
                 enlacePaciente.SegundoApellido = textBoxSegundoApellido.Text;
-                enlacePaciente.Tipo_Sangre = textBoxSangre.Text;
+                enlacePaciente.Tipo_Sangre = cmbSangre.Text;
                 enlacePaciente.FechaNacimiento = fecha_Nacimiento.Value;
                 enlacePaciente.Telefono = textBoxTelefono.Text;
                 enlacePaciente.Direccion = textBoxDireccion.Text;
                 enlacePaciente.Ocupacion = textBoxOcupacion.Text;
                 enlacePaciente.Correo = textBoxCorreo.Text;
-                enlacePaciente.Regimen = comboBox1.Text;
-                enlacePaciente.Nacionalidad = textBoxNacionalidad.Text;
+                enlacePaciente.Regimen = txtRegimen.Text;
+                enlacePaciente.Nacionalidad = cmbCiudad.Text;
                 enlacePaciente.EstadoCivil = textBoxEstado_Civil.Text;
                 enlacePaciente.NivelEducativo = textBoxNivel_Educativo.Text;
 
-                servicio.Update(enlacePaciente);
+                var respuesta = MessageBox.Show("¿Desea Confirmar Los Cambios?", "ACTUALIZACION",MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (respuesta == DialogResult.Yes)
+                {
+                    if (servicio.Update(enlacePaciente) == true)
+                    {
+                        MessageBox.Show("Paciente " + enlacePaciente.PrimerNombre + " Actualizado Correctamente", "ACTUALIZAR PACIENTE",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error Al Actualizar", "ACTUALIZACION",
+                                             MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Actualizacion Cancelada", "ACTUALIZACION",
+                                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
         }
         void Eliminar()
@@ -186,6 +202,10 @@ namespace Presentacion_GUI
                 Limpiar();
             }
         }
+        void buscarCedula()
+        {
+            GrillaPacientes.DataSource = servicio.GetByName(textBoxBusqueda.Text);
+        }
         private bool CamposEstanCompletos(params TextBox[] controles)
         {
             foreach (var control in controles)
@@ -197,12 +217,23 @@ namespace Presentacion_GUI
             }
             return false;
         }
+        #endregion
 
-        //ACCIONES
+        #region ACCIONES
+        void buttonagregar_Click(object sender, EventArgs e)
+        {
+            Guardar();
+            CargarDatos();
+            CargarLista();
+            Limpiar();
+        }
         private void FormListadoGeneralcs_Load(object sender, EventArgs e)
         {
             CargarDatos();
             CargarLista();
+            CargarCiudades();
+            CargarTipoSangre();
+            Limpiar();
         }
         private void buttonNuevo_Click(object sender, EventArgs e)
         {
@@ -218,7 +249,7 @@ namespace Presentacion_GUI
         }
         private void lstPacientes_DoubleClick(object sender, EventArgs e)
         {
-            dobleClick();
+            DobleClick();
         }
         private void buttonActualizar_Click(object sender, EventArgs e)
         {
@@ -233,22 +264,9 @@ namespace Presentacion_GUI
         }
         private void buttonfiltar_Click(object sender, EventArgs e)
         {
-            /*var busqueda = textBoxBusqueda.Text;
-
-            var lista = servicio.GetByName(busqueda);
-
-            if (lista != null)
-            {
-                dataGridView1.Rows.Clear();
-                foreach (var item in lista)
-                {
-                    dataGridView1.Rows.Add(item.Id, item.PrimerNombre, item.SegundoNombre, item.PrimerApellido,
-                                           item.SegundoApellido, item.Telefono, item.Direccion, item.Ocupacion,
-                                           item.EstadoCivil, item.Correo, item.FechaNacimiento, item.Edad, item.Regimen,
-                                           item.Nacionalidad, item.EstadoCivil, item.NivelEducativo);
-                }
-            }*/
+            buscarCedula();
         }
+        #endregion
     }
 }
 

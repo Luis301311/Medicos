@@ -17,10 +17,9 @@ namespace Logica
         DatosPacientes enlacePaciente = new DatosPacientes();
         DataTable tabla = new DataTable();
 
-        public DataTable MostrarPacientes()
-        {     
-            tabla = enlacePaciente.MostrarPacientes();
-            return tabla;
+        public DataTable TablaPacientes()
+        {
+            return enlacePaciente.ObtenerTablaPacientes();
         }
 
         public ServicioPaciente()
@@ -28,15 +27,14 @@ namespace Logica
             pacientes = new List<Paciente>();
         }
 
-        //public int BuscarPorNombre(string name)
-        //{
-            
-        //}
-
         public bool Add(Paciente enlace)
         {
-            enlacePaciente.InsertarPaciente(enlace);
-            return true;
+            if (Exist(enlace.Id) == false)
+            {
+                enlacePaciente.InsertarPaciente(enlace);
+                return true;
+            }
+            return false;
         }
 
         public bool Delete(int id)
@@ -71,34 +69,36 @@ namespace Logica
 
         public List<Paciente> GetByAll()
         {
-           // pacientes=archivo.Leer();
+            // pacientes=archivo.Leer();
 
-            if (pacientes == null) return null;
-
-            return pacientes;
+            var lista = enlacePaciente.ObtenerLista();
+            return lista;
         }
 
-        public List<Paciente> GetByName(string name)
+        public DataTable GetByName(string cedula)
         {
-            var lista =new List<Paciente>();
-
-            foreach( var item in GetByAll())
-            {
-                if(item.PrimerNombre.ToLower().Contains(name.ToLower()))
-                {
-                    lista.Add(item);
-                }
-            }
-
-            if (lista.Count == 0) return null;
-            return lista;
+            return enlacePaciente.ObtenerCedula(cedula);
         }
 
         public bool Update(Paciente paciente)
         {
-            enlacePaciente.ActualizarPacinete(paciente);
-            return true;
+            return enlacePaciente.ActualizarPacinete(paciente);
+
         }
        
+        public DataTable ObtenerC()
+        {
+            return enlacePaciente.ObtenerCiudades();
+        }
+
+        public DataTable ObtenerT()
+        {
+            return enlacePaciente.ObtenerTiposSangre();
+        }
+
+        List<Paciente> InterfazHospital<Paciente>.GetByName(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

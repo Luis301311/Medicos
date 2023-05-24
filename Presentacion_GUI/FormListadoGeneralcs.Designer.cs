@@ -44,7 +44,7 @@
             this.textBoxDireccion = new System.Windows.Forms.TextBox();
             this.textBoxNivel_Educativo = new System.Windows.Forms.TextBox();
             this.textBoxEstado_Civil = new System.Windows.Forms.TextBox();
-            this.textBoxNacionalidad = new System.Windows.Forms.TextBox();
+            this.txtRegimen = new System.Windows.Forms.TextBox();
             this.textBoxCorreo = new System.Windows.Forms.TextBox();
             this.textBoxTelefono = new System.Windows.Forms.TextBox();
             this.textBoxPrimerNombre = new System.Windows.Forms.TextBox();
@@ -61,7 +61,7 @@
             this.textBoxSegundoApellido = new System.Windows.Forms.TextBox();
             this.textBoxPrimerApellido = new System.Windows.Forms.TextBox();
             this.textBoxSegundoNombre = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbCiudad = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
@@ -73,7 +73,7 @@
             this.GrillaPacientes = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.textBoxSangre = new System.Windows.Forms.TextBox();
+            this.cmbSangre = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -238,12 +238,12 @@
             this.textBoxEstado_Civil.Size = new System.Drawing.Size(109, 20);
             this.textBoxEstado_Civil.TabIndex = 16;
             // 
-            // textBoxNacionalidad
+            // txtRegimen
             // 
-            this.textBoxNacionalidad.Location = new System.Drawing.Point(403, 13);
-            this.textBoxNacionalidad.Name = "textBoxNacionalidad";
-            this.textBoxNacionalidad.Size = new System.Drawing.Size(109, 20);
-            this.textBoxNacionalidad.TabIndex = 17;
+            this.txtRegimen.Location = new System.Drawing.Point(645, 145);
+            this.txtRegimen.Name = "txtRegimen";
+            this.txtRegimen.Size = new System.Drawing.Size(109, 20);
+            this.txtRegimen.TabIndex = 17;
             // 
             // textBoxCorreo
             // 
@@ -389,16 +389,13 @@
             this.textBoxSegundoNombre.Size = new System.Drawing.Size(105, 20);
             this.textBoxSegundoNombre.TabIndex = 40;
             // 
-            // comboBox1
+            // cmbCiudad
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Sudsiado",
-            "Contributivo"});
-            this.comboBox1.Location = new System.Drawing.Point(645, 147);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(107, 21);
-            this.comboBox1.TabIndex = 42;
+            this.cmbCiudad.FormattingEnabled = true;
+            this.cmbCiudad.Location = new System.Drawing.Point(403, 11);
+            this.cmbCiudad.Name = "cmbCiudad";
+            this.cmbCiudad.Size = new System.Drawing.Size(107, 21);
+            this.cmbCiudad.TabIndex = 42;
             // 
             // tabControl1
             // 
@@ -412,14 +409,14 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.textBoxSangre);
+            this.tabPage1.Controls.Add(this.cmbSangre);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.buttonActualizar);
             this.tabPage1.Controls.Add(this.lstPacientes);
             this.tabPage1.Controls.Add(this.labelNotificacion);
             this.tabPage1.Controls.Add(this.labelid);
-            this.tabPage1.Controls.Add(this.comboBox1);
+            this.tabPage1.Controls.Add(this.cmbCiudad);
             this.tabPage1.Controls.Add(this.labelnombre);
             this.tabPage1.Controls.Add(this.textBoxSegundoNombre);
             this.tabPage1.Controls.Add(this.labeltelefono);
@@ -446,7 +443,7 @@
             this.tabPage1.Controls.Add(this.fecha_Nacimiento);
             this.tabPage1.Controls.Add(this.textBoxEstado_Civil);
             this.tabPage1.Controls.Add(this.textBoxPrimerNombre);
-            this.tabPage1.Controls.Add(this.textBoxNacionalidad);
+            this.tabPage1.Controls.Add(this.txtRegimen);
             this.tabPage1.Controls.Add(this.textBoxTelefono);
             this.tabPage1.Controls.Add(this.textBoxCorreo);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -556,12 +553,13 @@
             this.pictureBox2.TabIndex = 46;
             this.pictureBox2.TabStop = false;
             // 
-            // textBoxSangre
+            // cmbSangre
             // 
-            this.textBoxSangre.Location = new System.Drawing.Point(645, 99);
-            this.textBoxSangre.Name = "textBoxSangre";
-            this.textBoxSangre.Size = new System.Drawing.Size(107, 20);
-            this.textBoxSangre.TabIndex = 49;
+            this.cmbSangre.FormattingEnabled = true;
+            this.cmbSangre.Location = new System.Drawing.Point(645, 98);
+            this.cmbSangre.Name = "cmbSangre";
+            this.cmbSangre.Size = new System.Drawing.Size(107, 21);
+            this.cmbSangre.TabIndex = 49;
             // 
             // FormListadoGeneralcs
             // 
@@ -606,7 +604,7 @@
         private System.Windows.Forms.TextBox textBoxDireccion;
         private System.Windows.Forms.TextBox textBoxNivel_Educativo;
         private System.Windows.Forms.TextBox textBoxEstado_Civil;
-        private System.Windows.Forms.TextBox textBoxNacionalidad;
+        private System.Windows.Forms.TextBox txtRegimen;
         private System.Windows.Forms.TextBox textBoxCorreo;
         private System.Windows.Forms.TextBox textBoxTelefono;
         private System.Windows.Forms.TextBox textBoxPrimerNombre;
@@ -623,7 +621,7 @@
         private System.Windows.Forms.TextBox textBoxSegundoApellido;
         private System.Windows.Forms.TextBox textBoxPrimerApellido;
         private System.Windows.Forms.TextBox textBoxSegundoNombre;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbCiudad;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -635,6 +633,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.DataGridView GrillaPacientes;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBoxSangre;
+        private System.Windows.Forms.ComboBox cmbSangre;
     }
 }
