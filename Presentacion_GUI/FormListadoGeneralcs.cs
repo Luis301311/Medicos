@@ -111,13 +111,13 @@ namespace Presentacion_GUI
                 enlacePaciente.SegundoNombre = textBoxSegundoNombre.Text;
                 enlacePaciente.PrimerApellido = textBoxPrimerApellido.Text;
                 enlacePaciente.SegundoApellido = textBoxSegundoApellido.Text;
-                enlacePaciente.Tipo_Sangre = cmbSangre.Text;
+                enlacePaciente.Tipo_Sangre = cmbSangre.SelectedValue.ToString();
                 enlacePaciente.FechaNacimiento = fecha_Nacimiento.Value;
                 enlacePaciente.Telefono = textBoxTelefono.Text;
                 enlacePaciente.Direccion = textBoxDireccion.Text;
                 enlacePaciente.Correo = textBoxCorreo.Text;
                 enlacePaciente.Nacionalidad = cmbCiudad.Text;
-                enlacePaciente.Eps = cmbEps.Text;
+                enlacePaciente.Eps = cmbEps.SelectedValue.ToString();
 
                 if (servicio.Add(enlacePaciente) == true)
                 {
