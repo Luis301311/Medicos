@@ -19,9 +19,17 @@ namespace Presentacion_GUI
         #region FUNCIONES
         void CargarCiudades()
         {
-           /* cmbCiudad.DataSource = ();
+            ServicioCiudades servicio = new ServicioCiudades();
+            cmbCiudad.DataSource = servicio.GetAll();
             cmbCiudad.DisplayMember = "nombre";
-            cmbCiudad.ValueMember = "Id_cuidad";*/
+            cmbCiudad.ValueMember = "Id_cuidad";
+        }
+        void CargarEps()
+        {
+            ServicioEPS servicio = new ServicioEPS();
+            cmbEps.DataSource = servicio.GetAll();
+            cmbEps.ValueMember = "Id";
+            cmbEps.DisplayMember = "Nombre";
         }
         void CargarTipoSangre()
         {
@@ -116,7 +124,7 @@ namespace Presentacion_GUI
                 enlacePaciente.Telefono = textBoxTelefono.Text;
                 enlacePaciente.Direccion = textBoxDireccion.Text;
                 enlacePaciente.Correo = textBoxCorreo.Text;
-                enlacePaciente.Nacionalidad = cmbCiudad.Text;
+                enlacePaciente.Nacionalidad = cmbCiudad.SelectedValue.ToString();
                 enlacePaciente.Eps = cmbEps.SelectedValue.ToString();
 
                 if (servicio.Add(enlacePaciente) == true)
@@ -157,13 +165,13 @@ namespace Presentacion_GUI
                 enlacePaciente.SegundoNombre = textBoxSegundoNombre.Text;
                 enlacePaciente.PrimerApellido = textBoxPrimerApellido.Text;
                 enlacePaciente.SegundoApellido = textBoxSegundoApellido.Text;
-                enlacePaciente.Tipo_Sangre = cmbSangre.Text;
+                enlacePaciente.Tipo_Sangre = cmbSangre.SelectedValue.ToString();
                 enlacePaciente.FechaNacimiento = fecha_Nacimiento.Value;
                 enlacePaciente.Telefono = textBoxTelefono.Text;
                 enlacePaciente.Direccion = textBoxDireccion.Text;
                 enlacePaciente.Correo = textBoxCorreo.Text;
-                enlacePaciente.Nacionalidad = cmbCiudad.Text;
-                enlacePaciente.Eps = cmbEps.Text;
+                enlacePaciente.Nacionalidad = cmbCiudad.SelectedValue.ToString();
+                enlacePaciente.Eps = cmbEps.SelectedValue.ToString().ToString();
 
                 var respuesta = MessageBox.Show("¿Desea Confirmar Los Cambios?", "ACTUALIZACION",MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (respuesta == DialogResult.Yes)
@@ -256,6 +264,7 @@ namespace Presentacion_GUI
             CargarLista();
             CargarCiudades();
             CargarTipoSangre();
+            CargarEps();
             Limpiar();
         }
         private void buttonNuevo_Click(object sender, EventArgs e)

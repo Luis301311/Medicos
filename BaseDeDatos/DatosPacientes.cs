@@ -53,7 +53,7 @@ namespace BaseDeDatos
                 comandoInsert.Parameters.Add("DIRECCION", OracleDbType.Varchar2).Value = paciente.Direccion;
                 comandoInsert.Parameters.Add("CIUDAD", OracleDbType.Varchar2).Value = paciente.Nacionalidad;
                 comandoInsert.Parameters.Add("SANGRE", OracleDbType.Varchar2).Value = paciente.Tipo_Sangre;
-                comandoInsert.Parameters.Add("EPS", OracleDbType.Varchar2).Value = paciente.Eps;
+                comandoInsert.Parameters.Add("EPS", OracleDbType.Int32).Value = int.Parse(paciente.Eps);
 
                 comandoInsert.ExecuteNonQuery();
 
@@ -91,7 +91,7 @@ namespace BaseDeDatos
                 comandoUpdate.Parameters.Add("sangre", OracleDbType.Varchar2).Value = paciente.Tipo_Sangre;
                 comandoUpdate.Parameters.Add("eps", OracleDbType.Int16).Value = paciente.Eps;
                 comandoUpdate.ExecuteNonQuery();
-
+                
                 return true;
             }
             catch (Exception)

@@ -48,9 +48,9 @@ namespace BaseDeDatos
                 if (!reader.HasRows) return null;
                 {
                     Ciudad ciudad = new Ciudad();
-                    ciudad.Id_cuidad = (string)reader["ID_CUIDAD"];
+                    ciudad.Id_cuidad = (string)reader["ID"];
                     ciudad.Nombre = (string)reader["NOMBRE"];
-                    ciudad.Id_Departamento = (string)reader["ID_DEPARTAMENTO"];
+                    ciudad.Id_Departamento = (string)reader["DEPARTAMENTO"];
 
                     return ciudad;
                 }
