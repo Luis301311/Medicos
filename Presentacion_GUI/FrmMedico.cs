@@ -37,6 +37,20 @@ namespace Presentacion_GUI
 
             labelNotificacion.Text = string.Empty;
         }
+        void CargarCiudades()
+        {
+            ServicioCiudades servicio = new ServicioCiudades();
+            cmbCiudad.DataSource = servicio.GetAll();
+            cmbCiudad.DisplayMember = "nombre";
+            cmbCiudad.ValueMember = "Id_cuidad";
+        }
+        void CargarEspecialidades()
+        {
+            ServicioEspecialidad servicio = new ServicioEspecialidad();
+            cmbEspecialidad.DataSource = servicio.GetAll();
+            cmbEspecialidad.DisplayMember = "nombre";
+            cmbEspecialidad.ValueMember = "Id";
+        }
         bool CamposEstanCompletos(params TextBox[] controles)
         {
             foreach (var control in controles)
@@ -59,9 +73,9 @@ namespace Presentacion_GUI
                 enlaceMedico.SegundoApellido = textBoxSegundoApellido.Text;
                 enlaceMedico.Telefono = textBoxTelefono.Text;
                 enlaceMedico.Correo = textBoxCorreo.Text;
-                enlaceMedico.Especialidad = cmbEspecialidad.Text;
+                enlaceMedico.Especialidad = cmbEspecialidad.SelectedValue.ToString();
                 enlaceMedico.FechaGraduado = dtpGraduacion.Value;
-                enlaceMedico.Nacionalidad = cmbCiudad.Text;
+                enlaceMedico.Nacionalidad = cmbCiudad.SelectedValue.ToString();
                 enlaceMedico.FechaNacimiento = dtpNacimiento.Value;
 
                 if (servicio.Add(enlaceMedico) == true)
@@ -82,7 +96,6 @@ namespace Presentacion_GUI
         }
         void Salir()
         {
-     
             Close();
         }
         void CargarLista()
@@ -111,8 +124,8 @@ namespace Presentacion_GUI
                 enlaceMedico.Telefono = textBoxTelefono.Text;
                 enlaceMedico.Correo = textBoxCorreo.Text;
                 enlaceMedico.FechaGraduado = dtpGraduacion.Value;
-                enlaceMedico.Nacionalidad = cmbCiudad.Text;
-                enlaceMedico.Especialidad = cmbEspecialidad.Text;
+                enlaceMedico.Nacionalidad = cmbCiudad.SelectedValue.ToString();
+                enlaceMedico.Especialidad = cmbEspecialidad.SelectedValue.ToString();
 
                 var respuesta = MessageBox.Show("¿Desea Actualizar Al Medico " + textBoxPrimerNombre.Text + "?", "ACTUALIZACION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (respuesta == DialogResult.Yes)
@@ -220,6 +233,8 @@ namespace Presentacion_GUI
         {
             CargarLista();
             CargarGrilla();
+            CargarCiudades();
+            CargarEspecialidades();
         }
         private void buttonNuevo_Click(object sender, EventArgs e)
         {

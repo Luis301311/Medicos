@@ -78,6 +78,7 @@
     <Compile Include="Conexion.cs" />
     <Compile Include="DatosCiudades.cs" />
     <Compile Include="DatosEPS.cs" />
+    <Compile Include="DatosEspecialidad.cs" />
     <Compile Include="DatosMedico.cs" />
     <Compile Include="DatosPacientes.cs" />
     <Compile Include="DatosTipodeSangre.cs" />
