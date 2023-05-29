@@ -36,11 +36,12 @@
             this.textBoxusuario = new System.Windows.Forms.TextBox();
             this.textBoxcontraseña = new System.Windows.Forms.TextBox();
             this.labelconfirmar = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttoninicio
             // 
-            this.buttoninicio.Location = new System.Drawing.Point(87, 186);
+            this.buttoninicio.Location = new System.Drawing.Point(10, 217);
             this.buttoninicio.Name = "buttoninicio";
             this.buttoninicio.Size = new System.Drawing.Size(103, 23);
             this.buttoninicio.TabIndex = 0;
@@ -77,7 +78,7 @@
             // 
             // buttonsalir
             // 
-            this.buttonsalir.Location = new System.Drawing.Point(127, 300);
+            this.buttonsalir.Location = new System.Drawing.Point(87, 309);
             this.buttonsalir.Name = "buttonsalir";
             this.buttonsalir.Size = new System.Drawing.Size(103, 23);
             this.buttonsalir.TabIndex = 4;
@@ -87,16 +88,16 @@
             // 
             // textBoxusuario
             // 
-            this.textBoxusuario.Location = new System.Drawing.Point(142, 72);
+            this.textBoxusuario.Location = new System.Drawing.Point(116, 72);
             this.textBoxusuario.Name = "textBoxusuario";
-            this.textBoxusuario.Size = new System.Drawing.Size(100, 20);
+            this.textBoxusuario.Size = new System.Drawing.Size(126, 20);
             this.textBoxusuario.TabIndex = 5;
             // 
             // textBoxcontraseña
             // 
-            this.textBoxcontraseña.Location = new System.Drawing.Point(142, 130);
+            this.textBoxcontraseña.Location = new System.Drawing.Point(116, 130);
             this.textBoxcontraseña.Name = "textBoxcontraseña";
-            this.textBoxcontraseña.Size = new System.Drawing.Size(100, 20);
+            this.textBoxcontraseña.Size = new System.Drawing.Size(126, 20);
             this.textBoxcontraseña.TabIndex = 6;
             // 
             // labelconfirmar
@@ -107,11 +108,21 @@
             this.labelconfirmar.Size = new System.Drawing.Size(0, 13);
             this.labelconfirmar.TabIndex = 7;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(142, 217);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(103, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "REGISTRARSE";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(279, 344);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.labelconfirmar);
             this.Controls.Add(this.textBoxcontraseña);
             this.Controls.Add(this.textBoxusuario);
@@ -137,6 +148,7 @@
         private System.Windows.Forms.TextBox textBoxusuario;
         private System.Windows.Forms.TextBox textBoxcontraseña;
         private System.Windows.Forms.Label labelconfirmar;
+        private System.Windows.Forms.Button button1;
     }
 }
 

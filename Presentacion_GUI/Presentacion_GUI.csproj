@@ -58,6 +58,12 @@
     <Compile Include="FormListadoGeneralcs.Designer.cs">
       <DependentUpon>FormListadoGeneralcs.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAdmin.Designer.cs">
+      <DependentUpon>FrmAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMedico.cs">
       <SubType>Form</SubType>
     </Compile>

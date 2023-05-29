@@ -11,32 +11,34 @@ namespace Logica
 {
     public  class ServicioTipoDeSangre : InterfazHospital<TipodeSangre>
     {
-        List<Paciente> pacientes = null;
-        //ArchivoPaciente archivo = new ArchivoPaciente("Paciente.txt");
-        DatosPacientes enlacePaciente = new DatosPacientes();
-       // DataTable tabla = new DataTable();
+        DatosTipodeSangre DatosTipoSangre = new DatosTipodeSangre();
 
         public bool Add(TipodeSangre persona)
         {
             throw new NotImplementedException();
         }
 
-        public bool Delete(int id)
+        public bool Delete(string id)
         {
             throw new NotImplementedException();
         }
 
-        public bool Exist(int id)
+        public bool Exist(string id)
         {
             throw new NotImplementedException();
         }
 
-        public List<TipodeSangre> GetByAll()
+        public List<TipodeSangre> GetAll()
         {
-           return new BaseDeDatos.DatosTipodeSangre().ObtenerTiposDeSangre();
+           return DatosTipoSangre.ObtenerTiposDeSangre();
         }
 
         public List<TipodeSangre> GetByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<TipodeSangre> TableToList(DataTable tabla)
         {
             throw new NotImplementedException();
         }

@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
 using Logica;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using TextBox = System.Windows.Forms.TextBox;
 
 namespace Presentacion_GUI
@@ -22,10 +15,9 @@ namespace Presentacion_GUI
         public FrmMedico()
         {
             InitializeComponent();
-            CargarLista();
-            CargarGrilla();
         }
 
+        #region Funciones
         void Nuevo()
         {
             textBoxId.Enabled = true;
@@ -38,10 +30,12 @@ namespace Presentacion_GUI
             textBoxSegundoApellido.Clear();
             textBoxTelefono.Clear();
             textBoxCorreo.Clear();
-            textBoxEdad.Clear();
-            textBoxEspecialidad.Clear();
-            textBoxExperiencia.Clear();
-            labelNotificacion.Text = "";
+            dtpGraduacion.Value = DateTime.Today;
+            dtpNacimiento.Value = DateTime.Today;
+            cmbCiudad.Text = "";
+            cmbEspecialidad.Text = "";
+
+            labelNotificacion.Text = string.Empty;
         }
         bool CamposEstanCompletos(params TextBox[] controles)
         {
@@ -56,18 +50,19 @@ namespace Presentacion_GUI
         }
         void Agregar()
         {
-            if (CamposEstanCompletos(textBoxId, textBoxPrimerNombre, textBoxPrimerApellido, textBoxTelefono, textBoxCorreo, textBoxEdad, textBoxEspecialidad, textBoxExperiencia) == false)
+            if (CamposEstanCompletos(textBoxId, textBoxPrimerNombre, textBoxPrimerApellido, textBoxTelefono, textBoxCorreo) == false)
             {
-                enlaceMedico.Id = int.Parse(textBoxId.Text);
+                enlaceMedico.Id = textBoxId.Text;
                 enlaceMedico.PrimerNombre = textBoxPrimerNombre.Text;
                 enlaceMedico.SegundoNombre = textBoxSegundoNombre.Text;
                 enlaceMedico.PrimerApellido = textBoxPrimerApellido.Text;
                 enlaceMedico.SegundoApellido = textBoxSegundoApellido.Text;
-                enlaceMedico.Edad = int.Parse(textBoxEdad.Text);
                 enlaceMedico.Telefono = textBoxTelefono.Text;
                 enlaceMedico.Correo = textBoxCorreo.Text;
-                enlaceMedico.Especialidad = textBoxEspecialidad.Text;
-                enlaceMedico.AniosExperiencia = int.Parse(textBoxExperiencia.Text);
+                enlaceMedico.Especialidad = cmbEspecialidad.Text;
+                enlaceMedico.FechaGraduado = dtpGraduacion.Value;
+                enlaceMedico.Nacionalidad = cmbCiudad.Text;
+                enlaceMedico.FechaNacimiento = dtpNacimiento.Value;
 
                 if (servicio.Add(enlaceMedico) == true)
                 {
@@ -85,17 +80,16 @@ namespace Presentacion_GUI
                 MessageBox.Show("CAMPOS OBLIGATORIOS");
             }
         }
-        
         void Salir()
         {
      
             Close();
         }
-
         void CargarLista()
         {
+
             lstMedicos.Items.Clear();
-            var lista = servicio.GetByAll();
+            var lista = servicio.GetAll();
             if (lista != null)
             {
                 foreach (var item in lista)
@@ -104,32 +98,51 @@ namespace Presentacion_GUI
                 }
             }
         }
-
         void Actualizar()
         {
             if(textBoxId.Text != "")
             {
-                enlaceMedico.Id = int.Parse(textBoxId.Text);
+                enlaceMedico.Id = textBoxId.Text;
                 enlaceMedico.PrimerNombre = textBoxPrimerNombre.Text;
                 enlaceMedico.SegundoNombre = textBoxSegundoNombre.Text;
                 enlaceMedico.PrimerApellido = textBoxPrimerApellido.Text;
                 enlaceMedico.SegundoApellido = textBoxSegundoApellido.Text;
-                enlaceMedico.Edad = int.Parse(textBoxEdad.Text);
+                enlaceMedico.FechaNacimiento = dtpNacimiento.Value;
                 enlaceMedico.Telefono = textBoxTelefono.Text;
                 enlaceMedico.Correo = textBoxCorreo.Text;
-                enlaceMedico.Especialidad = textBoxEspecialidad.Text;
-                enlaceMedico.AniosExperiencia = int.Parse(textBoxExperiencia.Text);
+                enlaceMedico.FechaGraduado = dtpGraduacion.Value;
+                enlaceMedico.Nacionalidad = cmbCiudad.Text;
+                enlaceMedico.Especialidad = cmbEspecialidad.Text;
 
-                servicio.Update(enlaceMedico);
-
-                MessageBox.Show("Medico " + enlaceMedico.PrimerNombre + " Actualizado exitosamente.");
+                var respuesta = MessageBox.Show("¿Desea Actualizar Al Medico " + textBoxPrimerNombre.Text + "?", "ACTUALIZACION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (respuesta == DialogResult.Yes)
+                {
+                    if (servicio.Update(enlaceMedico) == true)
+                    {
+                        CargarGrilla();
+                        CargarLista();
+                        MessageBox.Show("Medico " + enlaceMedico.PrimerNombre + " Actualizado exitosamente.","ACTUALIZACION");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error Al Actualizar", "ACTUALIZACION");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("ACTUALIZACION CANCELADA", "ACTUALIZACION");
+                }                
             }
         }
-
+        int ObtenerAño(DateTime fecha)
+        {
+            int años = (DateTime.Now.Year - fecha.Year);
+            return años;
+        }
         void CargarGrilla()
         {
             GrillaMed.Rows.Clear();
-            var lista = servicio.GetByAll();
+            var lista = servicio.GetAll();
             if (lista != null)
             {
                 foreach (var item in lista)
@@ -139,23 +152,40 @@ namespace Presentacion_GUI
                                        item.SegundoNombre,
                                        item.PrimerApellido,
                                        item.SegundoApellido,
-                                       item.Edad,
+                                       ObtenerAño(item.FechaNacimiento),
                                        item.Telefono,
                                        item.Correo,
                                        item.Especialidad,
-                                       item.AniosExperiencia);
+                                       ObtenerAño(item.FechaGraduado),
+                                       item.Nacionalidad);                      
                 }
             }
         }
-
         void Eliminar()
         {
             if(textBoxId.Text != null)
             {
-                servicio.Delete(int.Parse(textBoxId.Text));
+                var respuesta = MessageBox.Show("¿Desea Eliminar Al Medico " + textBoxPrimerNombre.Text + "?", "ELIMINACION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if(respuesta == DialogResult.Yes)
+                {
+                    if(servicio.Delete(textBoxId.Text)==true)
+                    {
+                        CargarGrilla();
+                        CargarLista();
+                        MessageBox.Show("Medico Eliminado Satisfcatoriamente","ELIMINACION");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error Al Eliminar","ELIMINACION");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("ELIMINACION CANCELADA","ELIMINACION");
+                }
+                
             }
         }
-
         void Filtrar()
         {
             if(TxtFiltrar.Text!=null)
@@ -171,41 +201,40 @@ namespace Presentacion_GUI
                                            item.SegundoNombre,
                                            item.PrimerApellido,
                                            item.SegundoApellido,
-                                           item.Edad,
+                                           ObtenerAño(item.FechaNacimiento),
                                            item.Telefono,
                                            item.Correo,
                                            item.Especialidad,
-                                           item.AniosExperiencia);
+                                           ObtenerAño(item.FechaGraduado),
+                                           item.Nacionalidad);
                     }
+                    buttonFiltar.Enabled = false;
+                    TxtFiltrar.Enabled = false;
                 }
             }
         }
+        #endregion
 
-
-
-
-
-
-
-
-
+        #region Botones
+        private void FrmMedico_Load(object sender, EventArgs e)
+        {
+            CargarLista();
+            CargarGrilla();
+        }
         private void buttonNuevo_Click(object sender, EventArgs e)
         {
            Nuevo();
         }
-
         private void buttonAgregar_Click(object sender, EventArgs e)
         {
             Agregar();
             CargarLista();
             CargarGrilla();
         }
-
         private void buttonSalir_Click(object sender, EventArgs e)
         {
             Salir();
         }
-
         private void FrmMedico_FormClosing(object sender, FormClosingEventArgs e)
         {
             var respuesta = MessageBox.Show("¿Desea Salir?", "Agenda de contactos",
@@ -221,10 +250,9 @@ namespace Presentacion_GUI
                 e.Cancel = true;
             }
         }
-
         private void lstMedicos_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            var lista = servicio.GetByAll();
+            var lista = servicio.GetAll();
             int index = lstMedicos.SelectedIndex;
 
             if (index > -1)
@@ -236,31 +264,40 @@ namespace Presentacion_GUI
                 textBoxSegundoNombre.Text = lista[index].SegundoNombre;
                 textBoxPrimerApellido.Text = lista[index].PrimerApellido;
                 textBoxSegundoApellido.Text = lista[index].SegundoApellido;
-                textBoxEdad.Text = lista[index].Edad.ToString();
                 textBoxCorreo.Text = lista[index].Correo;
-                textBoxEspecialidad.Text = lista[index].Especialidad;
-                textBoxExperiencia.Text = lista[index].AniosExperiencia.ToString();
+                cmbEspecialidad.Text = lista[index].Especialidad;
+                cmbCiudad.Text = lista[index].Nacionalidad;
                 textBoxTelefono.Text = lista[index].Telefono;
+                dtpGraduacion.Value = lista[index].FechaGraduado;
+                dtpNacimiento.Value = lista[index].FechaNacimiento;
             }
         }
-
         private void buttonActualizar_Click(object sender, EventArgs e)
         {
             Actualizar();
             CargarLista();
             CargarGrilla();
         }
-
         private void buttonEliminar_Click(object sender, EventArgs e)
         {
             Eliminar();
             CargarGrilla();
             CargarLista();
         }
-
         private void buttonFiltar_Click(object sender, EventArgs e)
         {
             Filtrar();
+        }
+
+        #endregion
+
+        private void btnRestablecer_Click(object sender, EventArgs e)
+        {
+            CargarGrilla();
+            buttonFiltar.Enabled = true;
+            TxtFiltrar.Enabled = true;
+            TxtFiltrar.Clear();
+            TxtFiltrar.Focus();
         }
     }
 }

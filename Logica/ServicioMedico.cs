@@ -1,6 +1,9 @@
-﻿using Entidades;
+﻿using BaseDeDatos;
+using Entidades;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,109 +12,93 @@ namespace Logica
 {
     public class ServicioMedico : InterfazHospital<Medico>
     {
-        List<Medico> medicos = null;
-        //ArchivoMedico archivo = new ArchivoMedico("Medicos.txt");
+        List<Medico> medicos = new List<Medico>();
+        DatosMedico DatosMedico = new DatosMedico();
 
         public ServicioMedico()
         {
             medicos = new List<Medico>();
         }
-        public bool Add(Medico enlace)
+
+        private List<Medico> TableToList()
         {
             try
             {
-                if (enlace == null)
+                DataTable tabla = new DataTable();
+                List<Medico> lista = new List<Medico> ();
+
+                tabla = DatosMedico.ObtenerMedicos();
+
+                foreach(DataRow fila in tabla.Rows)
                 {
-                    return false;
+                    Medico medico = new Medico();
+
+                    medico.Id = fila["cedula_medico"].ToString();
+                    medico.PrimerNombre = fila["primer_nombre"].ToString();
+                    medico.SegundoNombre = fila["segundo_nombre"].ToString();
+                    medico.PrimerApellido = fila["primer_apellido"].ToString();
+                    medico.SegundoApellido = fila["segundo_apellido"].ToString();
+                    medico.FechaNacimiento = Convert.ToDateTime(fila["fecha_nacimiento"]);
+                    medico.Telefono = fila["telefono"].ToString();
+                    medico.Correo = fila["email"].ToString();
+                    medico.Especialidad = fila["especialidad"].ToString();
+                    medico.Nacionalidad = fila["ciudad"].ToString();
+                    medico.FechaGraduado = Convert.ToDateTime(fila["fecha_graduado"]);
+
+                    lista.Add(medico);
                 }
-                else if (Exist(enlace.Id) == false)
-                {
-          //          archivo.Guardar(enlace);
-                    return true;
-                }
-                return false;
+                return lista;
             }
             catch (Exception)
             {
-                return false;
+                return null;
             }
+}
+        public List<Medico> GetAll()
+        { 
+            medicos = TableToList();
+            return medicos;
         }
-
-        public bool Delete(int id)
+        public List<Medico> GetByName(string name)
         {
-            var lista = new List<Medico>();
-
-            foreach (var item in GetByAll())
+            var lista = new List<Medico>(); 
+            foreach(var item in GetAll())
             {
-                if (item.Id != id)
+                if(item.PrimerNombre.ToUpper().Contains(name.ToUpper()))
                 {
                     lista.Add(item);
                 }
             }
-            return true;
+            return lista;
         }
-
-        public bool Exist(int id)
+        public bool Exist(string id)
         {
-            if (GetByAll() != null)
+            if (GetAll() != null)
             {
-                foreach (var item in GetByAll())
+                foreach (var item in GetAll())
                 {
-                    if (item.Id == id)
-                    {
-                        return true;
-                    }
+                    if (item.Id == id) return true;
                 }
             }
             return false;
-            
         }
-
-        public List<Medico> GetByAll()
+        public bool Add(Medico medico)
         {
-            //medicos = archivo.Leer();
-
-            if (medicos == null) return null;
-
-            return medicos;
+            if (Exist(medico.Id)==true || medico==null) return false;
+            return DatosMedico.InsertarMedico(medico);
         }
-
-        public List<Medico> GetByName(string name)
-        {
-            var lista = new List<Medico>();
-
-            foreach (var item in GetByAll())
-            {
-                if (item.PrimerNombre.ToLower().Contains(name.ToLower()))
-                {
-                    lista.Add(item);
-                }
-            }
-
-            if (lista.Count == 0) return null;
-            return lista;
-        }
-
         public bool Update(Medico medico)
         {
-            var listaActualizar = GetByAll();
-            foreach (var item in listaActualizar)
+            if(Exist(medico.Id) == true)
             {
-                if (item.Id == medico.Id)
-                {
-                    item.PrimerNombre = medico.PrimerNombre;
-                    item.SegundoNombre = medico.SegundoNombre;
-                    item.PrimerApellido = medico.PrimerApellido;
-                    item.SegundoApellido = medico.SegundoApellido;
-                    item.Edad = medico.Edad;
-                    item.Correo = medico.Correo;
-                    item.Telefono = medico.Telefono;
-                    item.AniosExperiencia = medico.AniosExperiencia;
-                    item.Especialidad = medico.Especialidad;
-                }
+                return DatosMedico.ActualizarMedico(medico);
             }
-            //archivo.Eliminar(listaActualizar);
-            return true;
+            return false;
+        }
+        public bool Delete(string id)
+        {
+            if (Exist(id) == false) return false;
+            return DatosMedico.EliminarMedico(id.ToString());
         }
     }
 }

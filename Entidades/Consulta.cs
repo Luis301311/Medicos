@@ -8,17 +8,7 @@ namespace Entidades
 {
     public class Consulta:Persona
     {
-        public Consulta() { }
-
-        public Consulta(int idDescripcion, string valoracionMedica, DateTime fechaValoracion,
-        string medicamentos, int idPaciente, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, string telefonoPaciente)
-        : base(idPaciente,primerNombre, segundoNombre, primerApellido, segundoApellido,telefonoPaciente)
-        {
-            IdDescripcion = idDescripcion;
-            ValoracionMedica = valoracionMedica;
-            FechaValoracion = fechaValoracion;
-            Medicamentos = medicamentos;
-        }
+        Consulta() { }
 
         public int IdDescripcion { get; set; }
         public string ValoracionMedica { get; set; }

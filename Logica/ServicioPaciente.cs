@@ -1,31 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Entidades;
 using BaseDeDatos;
 using System.Data;
+using System.Linq;
 
 namespace Logica
 {
     public class ServicioPaciente : InterfazHospital<Paciente>
     {
-        List<Paciente> pacientes = null;
+        List<Paciente> ListaPacientes = new List<Paciente>();
         DatosPacientes enlacePaciente = new DatosPacientes();
         DataTable tabla = new DataTable();
 
-        public DataTable TablaPacientes()
-        {
-            return enlacePaciente.ObtenerTablaPacientes();
-        }
-
         public ServicioPaciente()
         {
-            pacientes = new List<Paciente>();
+            ListaPacientes = new List<Paciente>();
         }
-
         public bool Add(Paciente enlace)
         {
             if (Exist(enlace.Id) == false)
@@ -35,17 +26,16 @@ namespace Logica
             }
             return false;
         }
-
-        public bool Delete(int id)
+        public bool Delete(string id)
         {
+            if (Exist(id) == false) return false;
             return enlacePaciente.EliminarPaciente(id.ToString());
         }
-
-        public bool Exist(int id)
+        public bool Exist(string id)
         {
-            if (GetByAll() != null)
+            if (GetAll() != null)
             {
-                foreach (var item in GetByAll())
+                foreach (var item in GetAll())
                 {
                     if (item.Id == id)
                     {
@@ -55,38 +45,67 @@ namespace Logica
             }
             return false;
         }
-
-        public List<Paciente> GetByAll()
+        public List<Paciente> GetAll()
         {
-            var lista = enlacePaciente.ObtenerLista();
-            if (lista == null) return null;
-            return lista;
+            ListaPacientes.Clear();
+            ListaPacientes= TableToList();
+            
+            return ListaPacientes;
         }
-
-        public DataTable GetByName(string cedula)
-        {
-            return enlacePaciente.ObtenerCedula(cedula);
-        }
-
         public bool Update(Paciente paciente)
         {
-            if(paciente != null) return enlacePaciente.ActualizarPacinete(paciente);
+            if(paciente != null && Exist(paciente.Id)==true) return enlacePaciente.ActualizarPacinete(paciente);
             return false;
         }
-       
-        public DataTable ObtenerC()
+        public List<Paciente> TableToList()
         {
-            return enlacePaciente.ObtenerCiudades();
-        }
+            try
+            {
+                DataTable tablaPaciente = new DataTable();
+                tablaPaciente = enlacePaciente.ObtenerTablaPacientes();
 
-        public DataTable ObtenerT()
-        {
-            return enlacePaciente.ObtenerTiposSangre();
-        }
+                foreach(DataRow fila in  tablaPaciente.Rows)
+                {
+                    Paciente paciente = new Paciente();
 
-        List<Paciente> InterfazHospital<Paciente>.GetByName(string name)
+                    paciente.Id = fila["cedula_paciente"].ToString();
+                    paciente.PrimerNombre = fila["primer_nombre"].ToString();
+                    paciente.SegundoNombre = fila["segundo_nombre"].ToString();
+                    paciente.PrimerApellido = fila["primer_apellido"].ToString();
+                    paciente.SegundoApellido = fila["segundo_apellido"].ToString();
+                    paciente.FechaNacimiento = Convert.ToDateTime(fila["fecha_nacimiento"]);
+                    paciente.Telefono = fila["telefono"].ToString();
+                    paciente.Correo = fila["email"].ToString();
+                    paciente.Direccion = fila["direccion"].ToString();
+                    paciente.Nacionalidad = fila["ciudad"].ToString();
+                    paciente.Tipo_Sangre = fila["tipo_sangre"].ToString();
+                    paciente.Eps = fila["EPS"].ToString();
+                
+                    ListaPacientes.Add(paciente);
+                }
+                return ListaPacientes;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        public List<Paciente> GetByName(string name)
         {
-            throw new NotImplementedException();
+            if(GetAll()!=null)
+            {
+                List<Paciente> ListaBusqueda = new List<Paciente>();
+
+                foreach(var item in GetAll())
+                {
+                    if(item.PrimerNombre.ToUpper().Contains(name.ToUpper().Trim()))
+                    {
+                        ListaBusqueda.Add(item);
+                    }
+                }
+                return ListaBusqueda;
+            }
+            return null;
         }
     }
 }

@@ -30,6 +30,13 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cmbEspecialidad = new System.Windows.Forms.ComboBox();
+            this.cmbCiudad = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.dtpNacimiento = new System.Windows.Forms.DateTimePicker();
+            this.label12 = new System.Windows.Forms.Label();
+            this.dtpGraduacion = new System.Windows.Forms.DateTimePicker();
             this.labelNotificacion = new System.Windows.Forms.Label();
             this.buttonActualizar = new System.Windows.Forms.Button();
             this.buttonNuevo = new System.Windows.Forms.Button();
@@ -43,11 +50,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxCorreo = new System.Windows.Forms.TextBox();
-            this.textBoxExperiencia = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBoxEdad = new System.Windows.Forms.TextBox();
-            this.textBoxEspecialidad = new System.Windows.Forms.TextBox();
             this.labelid = new System.Windows.Forms.Label();
             this.labelnombre = new System.Windows.Forms.Label();
             this.textBoxSegundoNombre = new System.Windows.Forms.TextBox();
@@ -59,7 +63,11 @@
             this.textBoxId = new System.Windows.Forms.TextBox();
             this.textBoxPrimerNombre = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.TxtFiltrar = new System.Windows.Forms.TextBox();
+            this.buttonFiltar = new System.Windows.Forms.Button();
             this.GrillaMed = new System.Windows.Forms.DataGridView();
+            this.label4 = new System.Windows.Forms.Label();
+            this.buttonSalir = new System.Windows.Forms.Button();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PNomber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,10 +78,8 @@
             this.Corr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Especialidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Años = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label4 = new System.Windows.Forms.Label();
-            this.buttonSalir = new System.Windows.Forms.Button();
-            this.buttonFiltar = new System.Windows.Forms.Button();
-            this.TxtFiltrar = new System.Windows.Forms.TextBox();
+            this.Ciu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnRestablecer = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -92,6 +98,13 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.cmbEspecialidad);
+            this.tabPage1.Controls.Add(this.cmbCiudad);
+            this.tabPage1.Controls.Add(this.label14);
+            this.tabPage1.Controls.Add(this.label13);
+            this.tabPage1.Controls.Add(this.dtpNacimiento);
+            this.tabPage1.Controls.Add(this.label12);
+            this.tabPage1.Controls.Add(this.dtpGraduacion);
             this.tabPage1.Controls.Add(this.labelNotificacion);
             this.tabPage1.Controls.Add(this.buttonActualizar);
             this.tabPage1.Controls.Add(this.buttonNuevo);
@@ -105,11 +118,8 @@
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.textBoxCorreo);
-            this.tabPage1.Controls.Add(this.textBoxExperiencia);
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.label9);
-            this.tabPage1.Controls.Add(this.textBoxEdad);
-            this.tabPage1.Controls.Add(this.textBoxEspecialidad);
             this.tabPage1.Controls.Add(this.labelid);
             this.tabPage1.Controls.Add(this.labelnombre);
             this.tabPage1.Controls.Add(this.textBoxSegundoNombre);
@@ -127,6 +137,72 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Gestion";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // cmbEspecialidad
+            // 
+            this.cmbEspecialidad.FormattingEnabled = true;
+            this.cmbEspecialidad.Location = new System.Drawing.Point(414, 155);
+            this.cmbEspecialidad.Name = "cmbEspecialidad";
+            this.cmbEspecialidad.Size = new System.Drawing.Size(105, 21);
+            this.cmbEspecialidad.TabIndex = 118;
+            // 
+            // cmbCiudad
+            // 
+            this.cmbCiudad.FormattingEnabled = true;
+            this.cmbCiudad.Location = new System.Drawing.Point(564, 62);
+            this.cmbCiudad.Name = "cmbCiudad";
+            this.cmbCiudad.Size = new System.Drawing.Size(99, 21);
+            this.cmbCiudad.TabIndex = 117;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.SystemColors.Info;
+            this.label14.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(571, 24);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(76, 15);
+            this.label14.TabIndex = 116;
+            this.label14.Text = "Ciudad De";
+            // 
+            // label13
+            // 
+            this.label13.AllowDrop = true;
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.SystemColors.Info;
+            this.label13.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(561, 39);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(102, 15);
+            this.label13.TabIndex = 114;
+            this.label13.Text = "Nacimiento(*):";
+            // 
+            // dtpNacimiento
+            // 
+            this.dtpNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpNacimiento.Location = new System.Drawing.Point(414, 19);
+            this.dtpNacimiento.Name = "dtpNacimiento";
+            this.dtpNacimiento.Size = new System.Drawing.Size(105, 20);
+            this.dtpNacimiento.TabIndex = 113;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.SystemColors.Info;
+            this.label12.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(299, 15);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(68, 15);
+            this.label12.TabIndex = 112;
+            this.label12.Text = "Fecha De";
+            // 
+            // dtpGraduacion
+            // 
+            this.dtpGraduacion.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpGraduacion.Location = new System.Drawing.Point(414, 202);
+            this.dtpGraduacion.Name = "dtpGraduacion";
+            this.dtpGraduacion.Size = new System.Drawing.Size(105, 20);
+            this.dtpGraduacion.TabIndex = 111;
             // 
             // labelNotificacion
             // 
@@ -185,7 +261,7 @@
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.SystemColors.Info;
             this.label11.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(670, 20);
+            this.label11.Location = new System.Drawing.Point(721, 19);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(68, 15);
             this.label11.TabIndex = 105;
@@ -194,7 +270,7 @@
             // lstMedicos
             // 
             this.lstMedicos.FormattingEnabled = true;
-            this.lstMedicos.Location = new System.Drawing.Point(638, 38);
+            this.lstMedicos.Location = new System.Drawing.Point(689, 37);
             this.lstMedicos.Name = "lstMedicos";
             this.lstMedicos.Size = new System.Drawing.Size(137, 225);
             this.lstMedicos.TabIndex = 104;
@@ -202,7 +278,7 @@
             // 
             // textBoxTelefono
             // 
-            this.textBoxTelefono.Location = new System.Drawing.Point(454, 59);
+            this.textBoxTelefono.Location = new System.Drawing.Point(414, 63);
             this.textBoxTelefono.Name = "textBoxTelefono";
             this.textBoxTelefono.Size = new System.Drawing.Size(105, 20);
             this.textBoxTelefono.TabIndex = 103;
@@ -212,94 +288,73 @@
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.SystemColors.Info;
             this.label8.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(337, 64);
+            this.label8.Location = new System.Drawing.Point(297, 68);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(70, 15);
+            this.label8.Size = new System.Drawing.Size(83, 15);
             this.label8.TabIndex = 102;
-            this.label8.Text = "Telefono:";
+            this.label8.Text = "Telefono(*):";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.SystemColors.Info;
             this.label10.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(336, 203);
+            this.label10.Location = new System.Drawing.Point(296, 207);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(90, 15);
+            this.label10.Size = new System.Drawing.Size(102, 15);
             this.label10.TabIndex = 101;
-            this.label10.Text = "Experiencia:";
+            this.label10.Text = "Graduacion(*):";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.SystemColors.Info;
             this.label5.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(337, 20);
+            this.label5.Location = new System.Drawing.Point(297, 33);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 15);
+            this.label5.Size = new System.Drawing.Size(102, 15);
             this.label5.TabIndex = 93;
-            this.label5.Text = "Edad:";
+            this.label5.Text = "Nacimiento(*):";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.SystemColors.Info;
             this.label6.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(337, 157);
+            this.label6.Location = new System.Drawing.Point(297, 161);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(97, 15);
+            this.label6.Size = new System.Drawing.Size(110, 15);
             this.label6.TabIndex = 94;
-            this.label6.Text = "Especialidad:";
+            this.label6.Text = "Especialidad(*):";
             // 
             // textBoxCorreo
             // 
-            this.textBoxCorreo.Location = new System.Drawing.Point(454, 104);
+            this.textBoxCorreo.Location = new System.Drawing.Point(414, 108);
             this.textBoxCorreo.Name = "textBoxCorreo";
             this.textBoxCorreo.Size = new System.Drawing.Size(105, 20);
             this.textBoxCorreo.TabIndex = 100;
-            // 
-            // textBoxExperiencia
-            // 
-            this.textBoxExperiencia.Location = new System.Drawing.Point(454, 197);
-            this.textBoxExperiencia.Name = "textBoxExperiencia";
-            this.textBoxExperiencia.Size = new System.Drawing.Size(105, 20);
-            this.textBoxExperiencia.TabIndex = 99;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.SystemColors.Info;
             this.label7.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(336, 188);
+            this.label7.Location = new System.Drawing.Point(296, 192);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(62, 15);
+            this.label7.Size = new System.Drawing.Size(68, 15);
             this.label7.TabIndex = 98;
-            this.label7.Text = "Años De";
+            this.label7.Text = "Fecha De";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.SystemColors.Info;
             this.label9.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(336, 109);
+            this.label9.Location = new System.Drawing.Point(296, 113);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(58, 15);
+            this.label9.Size = new System.Drawing.Size(71, 15);
             this.label9.TabIndex = 97;
-            this.label9.Text = "Correo:";
-            // 
-            // textBoxEdad
-            // 
-            this.textBoxEdad.Location = new System.Drawing.Point(454, 15);
-            this.textBoxEdad.Name = "textBoxEdad";
-            this.textBoxEdad.Size = new System.Drawing.Size(107, 20);
-            this.textBoxEdad.TabIndex = 95;
-            // 
-            // textBoxEspecialidad
-            // 
-            this.textBoxEspecialidad.Location = new System.Drawing.Point(454, 152);
-            this.textBoxEspecialidad.Name = "textBoxEspecialidad";
-            this.textBoxEspecialidad.Size = new System.Drawing.Size(105, 20);
-            this.textBoxEspecialidad.TabIndex = 96;
+            this.label9.Text = "Correo(*):";
             // 
             // labelid
             // 
@@ -308,9 +363,9 @@
             this.labelid.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelid.Location = new System.Drawing.Point(17, 20);
             this.labelid.Name = "labelid";
-            this.labelid.Size = new System.Drawing.Size(105, 15);
+            this.labelid.Size = new System.Drawing.Size(118, 15);
             this.labelid.TabIndex = 83;
-            this.labelid.Text = "Identificacion:";
+            this.labelid.Text = "Identificacion(*):";
             // 
             // labelnombre
             // 
@@ -319,9 +374,9 @@
             this.labelnombre.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelnombre.Location = new System.Drawing.Point(17, 64);
             this.labelnombre.Name = "labelnombre";
-            this.labelnombre.Size = new System.Drawing.Size(112, 15);
+            this.labelnombre.Size = new System.Drawing.Size(125, 15);
             this.labelnombre.TabIndex = 84;
-            this.labelnombre.Text = "Primer Nombre:";
+            this.labelnombre.Text = "Primer Nombre(*):";
             // 
             // textBoxSegundoNombre
             // 
@@ -351,9 +406,9 @@
             this.label3.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(17, 157);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 15);
+            this.label3.Size = new System.Drawing.Size(127, 15);
             this.label3.TabIndex = 89;
-            this.label3.Text = "Primer Apellido:";
+            this.label3.Text = "Primer Apellido(*):";
             // 
             // label2
             // 
@@ -393,6 +448,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnRestablecer);
             this.tabPage2.Controls.Add(this.TxtFiltrar);
             this.tabPage2.Controls.Add(this.buttonFiltar);
             this.tabPage2.Controls.Add(this.GrillaMed);
@@ -403,6 +459,23 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Listado De Medicos";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // TxtFiltrar
+            // 
+            this.TxtFiltrar.Location = new System.Drawing.Point(478, 18);
+            this.TxtFiltrar.Name = "TxtFiltrar";
+            this.TxtFiltrar.Size = new System.Drawing.Size(131, 20);
+            this.TxtFiltrar.TabIndex = 28;
+            // 
+            // buttonFiltar
+            // 
+            this.buttonFiltar.Location = new System.Drawing.Point(633, 16);
+            this.buttonFiltar.Name = "buttonFiltar";
+            this.buttonFiltar.Size = new System.Drawing.Size(75, 23);
+            this.buttonFiltar.TabIndex = 27;
+            this.buttonFiltar.Text = "Filtrar";
+            this.buttonFiltar.UseVisualStyleBackColor = true;
+            this.buttonFiltar.Click += new System.EventHandler(this.buttonFiltar_Click);
             // 
             // GrillaMed
             // 
@@ -418,11 +491,38 @@
             this.Tel,
             this.Corr,
             this.Especialidad,
-            this.Años});
+            this.Años,
+            this.Ciu});
             this.GrillaMed.Location = new System.Drawing.Point(19, 56);
             this.GrillaMed.Name = "GrillaMed";
             this.GrillaMed.Size = new System.Drawing.Size(785, 255);
             this.GrillaMed.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.SystemColors.Window;
+            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.label4.Font = new System.Drawing.Font("Tempus Sans ITC", 26.25F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Red;
+            this.label4.Location = new System.Drawing.Point(282, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(372, 48);
+            this.label4.TabIndex = 45;
+            this.label4.Text = "Hospital San Fernando";
+            // 
+            // buttonSalir
+            // 
+            this.buttonSalir.Font = new System.Drawing.Font("Segoe UI Symbol", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSalir.Location = new System.Drawing.Point(776, 416);
+            this.buttonSalir.Name = "buttonSalir";
+            this.buttonSalir.Size = new System.Drawing.Size(83, 29);
+            this.buttonSalir.TabIndex = 107;
+            this.buttonSalir.Text = "SALIR";
+            this.buttonSalir.UseVisualStyleBackColor = true;
+            this.buttonSalir.Click += new System.EventHandler(this.buttonSalir_Click);
             // 
             // Id
             // 
@@ -474,48 +574,21 @@
             this.Años.HeaderText = "Años De Experiencia";
             this.Años.Name = "Años";
             // 
-            // label4
+            // Ciu
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.SystemColors.Window;
-            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.label4.Font = new System.Drawing.Font("Tempus Sans ITC", 26.25F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
-                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(282, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(372, 48);
-            this.label4.TabIndex = 45;
-            this.label4.Text = "Hospital San Fernando";
+            this.Ciu.HeaderText = "Ciudad De Nacimiento";
+            this.Ciu.Name = "Ciu";
+            this.Ciu.ReadOnly = true;
             // 
-            // buttonSalir
+            // btnRestablecer
             // 
-            this.buttonSalir.Font = new System.Drawing.Font("Segoe UI Symbol", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSalir.Location = new System.Drawing.Point(776, 416);
-            this.buttonSalir.Name = "buttonSalir";
-            this.buttonSalir.Size = new System.Drawing.Size(83, 29);
-            this.buttonSalir.TabIndex = 107;
-            this.buttonSalir.Text = "SALIR";
-            this.buttonSalir.UseVisualStyleBackColor = true;
-            this.buttonSalir.Click += new System.EventHandler(this.buttonSalir_Click);
-            // 
-            // buttonFiltar
-            // 
-            this.buttonFiltar.Location = new System.Drawing.Point(729, 15);
-            this.buttonFiltar.Name = "buttonFiltar";
-            this.buttonFiltar.Size = new System.Drawing.Size(75, 23);
-            this.buttonFiltar.TabIndex = 27;
-            this.buttonFiltar.Text = "Filtrar";
-            this.buttonFiltar.UseVisualStyleBackColor = true;
-            this.buttonFiltar.Click += new System.EventHandler(this.buttonFiltar_Click);
-            // 
-            // TxtFiltrar
-            // 
-            this.TxtFiltrar.Location = new System.Drawing.Point(574, 17);
-            this.TxtFiltrar.Name = "TxtFiltrar";
-            this.TxtFiltrar.Size = new System.Drawing.Size(131, 20);
-            this.TxtFiltrar.TabIndex = 28;
+            this.btnRestablecer.Location = new System.Drawing.Point(729, 18);
+            this.btnRestablecer.Name = "btnRestablecer";
+            this.btnRestablecer.Size = new System.Drawing.Size(75, 23);
+            this.btnRestablecer.TabIndex = 29;
+            this.btnRestablecer.Text = "Restablecer";
+            this.btnRestablecer.UseVisualStyleBackColor = true;
+            this.btnRestablecer.Click += new System.EventHandler(this.btnRestablecer_Click);
             // 
             // FrmMedico
             // 
@@ -528,6 +601,7 @@
             this.Name = "FrmMedico";
             this.Text = "Gestión Medicos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMedico_FormClosing);
+            this.Load += new System.EventHandler(this.FrmMedico_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -553,11 +627,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxCorreo;
-        private System.Windows.Forms.TextBox textBoxExperiencia;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBoxEdad;
-        private System.Windows.Forms.TextBox textBoxEspecialidad;
         private System.Windows.Forms.Label labelid;
         private System.Windows.Forms.Label labelnombre;
         private System.Windows.Forms.TextBox textBoxSegundoNombre;
@@ -575,6 +646,15 @@
         private System.Windows.Forms.DataGridView GrillaMed;
         private System.Windows.Forms.Button buttonSalir;
         private System.Windows.Forms.Label labelNotificacion;
+        private System.Windows.Forms.TextBox TxtFiltrar;
+        private System.Windows.Forms.Button buttonFiltar;
+        private System.Windows.Forms.DateTimePicker dtpGraduacion;
+        private System.Windows.Forms.ComboBox cmbEspecialidad;
+        private System.Windows.Forms.ComboBox cmbCiudad;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.DateTimePicker dtpNacimiento;
+        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn PNomber;
         private System.Windows.Forms.DataGridViewTextBoxColumn SNombre;
@@ -585,7 +665,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Corr;
         private System.Windows.Forms.DataGridViewTextBoxColumn Especialidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Años;
-        private System.Windows.Forms.TextBox TxtFiltrar;
-        private System.Windows.Forms.Button buttonFiltar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ciu;
+        private System.Windows.Forms.Button btnRestablecer;
     }
 }

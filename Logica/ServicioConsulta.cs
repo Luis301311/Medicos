@@ -1,6 +1,7 @@
 ﻿using Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,11 +39,11 @@ namespace Logica
             }
         }
 
-        public bool Delete(int id)
+        public bool Delete(string id)
         {
             var lista = new List<Consulta>();
 
-            foreach (var item in GetByAll())
+            foreach (var item in GetAll())
             {
                 if (item.Id != id)
                 {
@@ -52,9 +53,9 @@ namespace Logica
             return true;//archivo.Eliminar(lista);
         }
 
-        public bool Exist(int id)
+        public bool Exist(string id)
         {
-            foreach (var item in GetByAll())
+            foreach (var item in GetAll())
             {
                 if (item.Id == id)
                 {
@@ -64,7 +65,7 @@ namespace Logica
             return false;
         }
 
-        public List<Consulta> GetByAll()
+        public List<Consulta> GetAll()
         {
             //consultas = archivo.Leer();
 
@@ -74,6 +75,11 @@ namespace Logica
         }
 
         public List<Consulta> GetByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Consulta> TableToList(DataTable tabla)
         {
             throw new NotImplementedException();
         }

@@ -10,8 +10,7 @@ namespace BaseDeDatos
     public class DatosTipodeSangre
     {
         Conexion con = new Conexion();
-        OracleDataAdapter adaptador = new OracleDataAdapter();
-
+        
         public List<TipodeSangre> ObtenerTiposDeSangre()
         {
             try
@@ -105,12 +104,25 @@ namespace BaseDeDatos
         {
             try
             {
+                OracleCommand comandoEliminar = new OracleCommand();
+
+                con.AbrirConexion();
+
+                comandoEliminar.CommandText = "EliminarTipoSangre";
+                comandoEliminar.Connection = con.conexion;
+                comandoEliminar.CommandType = CommandType.StoredProcedure;
+                comandoEliminar.Parameters.Add("id_eliminar", OracleDbType.Varchar2).Value = id;
+                comandoEliminar.ExecuteNonQuery();
+
                 return true;
             }
             catch (Exception)
             {
-
                 return false;
+            }
+            finally
+            {
+                con.CerrarConexion();
             }
         }
     }

@@ -17,16 +17,15 @@ namespace Presentacion_GUI
         }
 
         #region FUNCIONES
-
         void CargarCiudades()
         {
-            cmbCiudad.DataSource = servicio.ObtenerC();
+           /* cmbCiudad.DataSource = ();
             cmbCiudad.DisplayMember = "nombre";
-            cmbCiudad.ValueMember = "id_cuidad";
+            cmbCiudad.ValueMember = "Id_cuidad";*/
         }
         void CargarTipoSangre()
         {
-            cmbSangre.DataSource = ServicioTipoDeSangre.GetByAll();
+            cmbSangre.DataSource = ServicioTipoDeSangre.GetAll();
             cmbSangre.ValueMember = "Id";
             cmbSangre.DisplayMember = "Nombre";
         }
@@ -50,7 +49,7 @@ namespace Presentacion_GUI
             if (lstPacientes.SelectedIndex != -1)
             {
                 int num = lstPacientes.SelectedIndex;
-                var lista = servicio.GetByAll();
+                var lista = servicio.GetAll();
                 if (lista != null)
                 {
                     textBoxId.Text = lista[num].Id.ToString();
@@ -61,13 +60,10 @@ namespace Presentacion_GUI
                     fecha_Nacimiento.Value = lista[num].FechaNacimiento;
                     textBoxTelefono.Text = lista[num].Telefono;
                     textBoxCorreo.Text = lista[num].Correo;
-                    txtRegimen.Text = lista[num].Regimen;
-                    textBoxEstado_Civil.Text = lista[num].EstadoCivil;
                     textBoxDireccion.Text = lista[num].Direccion;
-                    textBoxOcupacion.Text = lista[num].Ocupacion;
-                    textBoxNivel_Educativo.Text = lista[num].NivelEducativo;
                     cmbCiudad.Text = lista[num].Nacionalidad;
                     cmbSangre.Text = lista[num].Tipo_Sangre;
+                    cmbEps.Text = lista[num].Eps.ToString();
 
                     textBoxId.Enabled = false;
                 }
@@ -76,43 +72,41 @@ namespace Presentacion_GUI
         void CargarLista()
         {
             lstPacientes.Items.Clear();
-            var lista = servicio.GetByAll();
+            var lista = servicio.GetAll();
+
             if (lista != null)
             {
-                foreach (var item in lista) 
+                foreach (var item in lista)
                 {
-                    lstPacientes.Items.Add(item.PrimerNombre+" "+item.PrimerApellido);
+                    lstPacientes.Items.Add(item.PrimerNombre + " " + item.PrimerApellido);
                 }
             }
         }
         void Limpiar()
         {
-        textBoxId.Enabled = true;
-        textBoxId.Focus();
-        textBoxId.Clear();
-        fecha_Nacimiento.Value = DateTime.Today;
+            textBoxId.Enabled = true;
+            textBoxId.Focus();
+            textBoxId.Clear();
+            fecha_Nacimiento.Value = DateTime.Today;
 
-        textBoxPrimerNombre.Clear();
-        textBoxSegundoNombre.Clear();
-        textBoxPrimerApellido.Clear();
-        textBoxSegundoApellido.Clear();
-        textBoxTelefono.Clear();
-        textBoxCorreo.Clear();
-        cmbSangre.Text = string.Empty;
-        cmbCiudad.Text = string.Empty;
-        txtRegimen.Clear();
-        textBoxEstado_Civil.Clear();
-        textBoxNivel_Educativo.Clear();
-        textBoxDireccion.Clear();
-        textBoxOcupacion.Clear();
+            textBoxPrimerNombre.Clear();
+            textBoxSegundoNombre.Clear();
+            textBoxPrimerApellido.Clear();
+            textBoxSegundoApellido.Clear();
+            textBoxTelefono.Clear();
+            textBoxCorreo.Clear();
+            cmbSangre.Text = string.Empty;
+            cmbCiudad.Text = string.Empty;
+            cmbEps.Text = string.Empty;
+            textBoxDireccion.Clear();
         }
-        async void Guardar()
+        void Guardar()
         {
 
             if (CamposEstanCompletos(textBoxId, textBoxPrimerNombre, textBoxPrimerApellido, textBoxTelefono, textBoxCorreo,
-                txtRegimen, textBoxEstado_Civil, textBoxNivel_Educativo, textBoxDireccion, textBoxOcupacion) == false)
+                 textBoxDireccion) == false)
             {
-                enlacePaciente.Id = int.Parse(textBoxId.Text);
+                enlacePaciente.Id = textBoxId.Text;
                 enlacePaciente.PrimerNombre = textBoxPrimerNombre.Text;
                 enlacePaciente.SegundoNombre = textBoxSegundoNombre.Text;
                 enlacePaciente.PrimerApellido = textBoxPrimerApellido.Text;
@@ -121,14 +115,10 @@ namespace Presentacion_GUI
                 enlacePaciente.FechaNacimiento = fecha_Nacimiento.Value;
                 enlacePaciente.Telefono = textBoxTelefono.Text;
                 enlacePaciente.Direccion = textBoxDireccion.Text;
-                enlacePaciente.Ocupacion = textBoxOcupacion.Text;
                 enlacePaciente.Correo = textBoxCorreo.Text;
-                enlacePaciente.Regimen = txtRegimen.Text;
                 enlacePaciente.Nacionalidad = cmbCiudad.Text;
-                enlacePaciente.EstadoCivil = textBoxEstado_Civil.Text;
-                enlacePaciente.NivelEducativo = textBoxNivel_Educativo.Text;
+                enlacePaciente.Eps = cmbEps.Text;
 
-                MessageBox.Show(enlacePaciente.Nacionalidad + " " + enlacePaciente.Tipo_Sangre);
                 if (servicio.Add(enlacePaciente) == true)
                 {
                     MessageBox.Show("Paciente Agregado Exitosamente", "GUARDAR PACIENTE",
@@ -149,14 +139,20 @@ namespace Presentacion_GUI
         }
         public void CargarDatos()
         {
-            ServicioPaciente servicio = new ServicioPaciente();
-            GrillaPacientes.DataSource = servicio.TablaPacientes();
+            
+            var lista = servicio.GetAll();
+            GrillaPacientes.Rows.Clear();
+            foreach(var item in lista)
+            {
+                GrillaPacientes.Rows.Add(item.Id,item.PrimerNombre,item.SegundoNombre,item.PrimerApellido,item.SegundoApellido,
+                                        item.FechaNacimiento,item.Telefono,item.Correo,item.Tipo_Sangre,item.Direccion,item.Nacionalidad,item.Eps);
+            }
         }
         void Actualizar()
         {
             if(textBoxId.Text!="")
             {
-                enlacePaciente.Id = int.Parse(textBoxId.Text);
+                enlacePaciente.Id = textBoxId.Text;
                 enlacePaciente.PrimerNombre = textBoxPrimerNombre.Text;
                 enlacePaciente.SegundoNombre = textBoxSegundoNombre.Text;
                 enlacePaciente.PrimerApellido = textBoxPrimerApellido.Text;
@@ -165,18 +161,17 @@ namespace Presentacion_GUI
                 enlacePaciente.FechaNacimiento = fecha_Nacimiento.Value;
                 enlacePaciente.Telefono = textBoxTelefono.Text;
                 enlacePaciente.Direccion = textBoxDireccion.Text;
-                enlacePaciente.Ocupacion = textBoxOcupacion.Text;
                 enlacePaciente.Correo = textBoxCorreo.Text;
-                enlacePaciente.Regimen = txtRegimen.Text;
                 enlacePaciente.Nacionalidad = cmbCiudad.Text;
-                enlacePaciente.EstadoCivil = textBoxEstado_Civil.Text;
-                enlacePaciente.NivelEducativo = textBoxNivel_Educativo.Text;
+                enlacePaciente.Eps = cmbEps.Text;
 
                 var respuesta = MessageBox.Show("¿Desea Confirmar Los Cambios?", "ACTUALIZACION",MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (respuesta == DialogResult.Yes)
                 {
                     if (servicio.Update(enlacePaciente) == true)
                     {
+                        CargarLista();
+                        CargarDatos();
                         MessageBox.Show("Paciente " + enlacePaciente.PrimerNombre + " Actualizado Correctamente", "ACTUALIZAR PACIENTE",MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
@@ -196,13 +191,12 @@ namespace Presentacion_GUI
         {
             if(textBoxId.Text!="")
             {
-                
                 var respuesta = MessageBox.Show("¿Desea Eliminar Al Paciente?", "ELIMINACION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (respuesta == DialogResult.Yes)
                 {
-                    if (servicio.Delete(int.Parse(textBoxId.Text)))
+                    if (servicio.Delete(textBoxId.Text)==true)
                     {
-                        MessageBox.Show("Paciente " + textBoxPrimerNombre.Text + " " + textBoxPrimerApellido.Text + " ELIMINADO.", "ELIMINACION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Paciente ELIMINADO.", "ELIMINACION", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
@@ -219,9 +213,21 @@ namespace Presentacion_GUI
                 CargarLista();
             }
         }
-        void buscarCedula()
+        void buscarNombre()
         {
-            GrillaPacientes.DataSource = servicio.GetByName(textBoxBusqueda.Text);
+            if (textBoxBusqueda.Text != string.Empty)
+            {
+                var listaA = servicio.GetByName(textBoxBusqueda.Text);
+                GrillaPacientes.Rows.Clear();
+                foreach (var item in listaA)
+                {
+                    GrillaPacientes.Rows.Add(item.Id, item.PrimerNombre, item.SegundoNombre, item.PrimerApellido, item.SegundoApellido,
+                                            item.FechaNacimiento, item.Telefono, item.Correo, item.Tipo_Sangre, item.Direccion,
+                                            item.Nacionalidad);
+                }
+            }
+            textBoxBusqueda.Enabled = false;
+            buttonfiltar.Enabled = false;
         }
         private bool CamposEstanCompletos(params TextBox[] controles)
         {
@@ -235,7 +241,6 @@ namespace Presentacion_GUI
             return false;
         }
         #endregion
-
 
         #region ACCIONES
         void buttonagregar_Click(object sender, EventArgs e)
@@ -272,8 +277,6 @@ namespace Presentacion_GUI
         private void buttonActualizar_Click(object sender, EventArgs e)
         {
             Actualizar();
-            CargarDatos();
-            CargarLista();
         }
         private void FormListadoGeneralcs_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -281,8 +284,16 @@ namespace Presentacion_GUI
         }
         private void buttonfiltar_Click(object sender, EventArgs e)
         {
-            buscarCedula();
+            buscarNombre();
         }
+        private void btnRestablecer_Click(object sender, EventArgs e)
+        {
+            CargarDatos();
+            buttonfiltar.Enabled = true;
+            textBoxBusqueda.Enabled = true;
+            textBoxBusqueda.Clear();
+        }
+
         #endregion
     }
 }
