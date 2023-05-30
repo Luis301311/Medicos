@@ -1,6 +1,6 @@
 ﻿namespace Presentacion_GUI
 {
-    partial class FormConsulta
+    partial class FormCitas
     {
         /// <summary>
         /// Required designer variable.

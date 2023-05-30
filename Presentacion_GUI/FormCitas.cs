@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Presentacion_GUI
 {
-    public partial class FormConsulta : Form
+    public partial class FormCitas : Form
     {
-        public FormConsulta()
+        public FormCitas()
         {
             InitializeComponent();
         }
