@@ -60,7 +60,7 @@ namespace BaseDeDatos
                 {
                     while (dataReader.Read())
                     {    
-                        list.Add(Mapeador(dataReader););
+                        list.Add(Mapeador(dataReader));
                     }
                 }
                 return list;
