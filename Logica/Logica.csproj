@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="InterfazHospital.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServicioCitas.cs" />
     <Compile Include="ServicioCiudades.cs" />
     <Compile Include="ServicioConsulta.cs" />
     <Compile Include="ServicioEPS.cs" />

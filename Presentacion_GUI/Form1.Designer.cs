@@ -121,7 +121,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(279, 344);
+            this.ClientSize = new System.Drawing.Size(318, 456);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.labelconfirmar);
             this.Controls.Add(this.textBoxcontraseña);

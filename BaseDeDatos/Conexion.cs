@@ -12,7 +12,7 @@ namespace BaseDeDatos
 {
     public class Conexion
     {
-        public  OracleConnection conexion = new OracleConnection("DATA SOURCE = localhost:1521/xepdb1;User Id = Miguel ;Password = miguelmeza28");
+        public  OracleConnection conexion = new OracleConnection("data source = LAPTOP-1N5NSQ43; initial catalog = ProyectoBDP3; Integrated Security=True ");
         public OracleConnection AbrirConexion()
         {
             conexion.Open();
